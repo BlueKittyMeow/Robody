@@ -65,22 +65,55 @@ ssh -i ~/.ssh/id_desktop -l "Blue Kitty" 10.0.0.123 \
 ```
 
 ### Launching Long-Running Processes
-SSH will kill processes when it disconnects. Use one of:
+SSH will kill processes when it disconnects. **Start-Process from SSH
+often fails silently** — the child process dies immediately.
 
-**Start-Process (detached, preferred):**
+**schtasks (RECOMMENDED — actually works):**
 ```bash
-ssh ... 'powershell -Command "Start-Process powershell -ArgumentList \"-ExecutionPolicy Bypass -File E:\\path\\script.ps1\" -WindowStyle Normal"'
+# Create a .bat wrapper first (SCP it over):
+# run.bat contains:
+#   @echo off
+#   "E:\kohya_ss\venv\Scripts\python.exe" "E:\path\script.py"
+#   pause
+
+# Then create + run a scheduled task:
+ssh ... 'powershell -Command "schtasks /Create /TN \"MyTask\" /TR \"E:\path\run.bat\" /SC ONCE /ST 00:00 /F; schtasks /Run /TN \"MyTask\""'
+
+# Monitor it:
+ssh ... 'powershell -Command "schtasks /Query /TN MyTask /FO LIST"'
+
+# Clean up when done:
+ssh ... 'powershell -Command "schtasks /Delete /TN MyTask /F"'
+```
+Why schtasks works: it creates a proper Windows session with a desktop,
+console handle, and full environment — unlike Start-Process from SSH
+which inherits the SSH session's limited environment.
+
+**cmd.exe /c (alternative — use for quick things):**
+```bash
+ssh ... 'powershell -Command "Start-Process cmd.exe -ArgumentList \"/c E:\path\run.bat\" -WindowStyle Normal"'
+```
+This sometimes works for simple .bat files but is unreliable for
+long-running Python processes.
+
+**Start-Process powershell (UNRELIABLE from SSH):**
+```bash
+# This looks like it should work but the child process often dies
+# immediately with no error output. Avoid for anything important.
+ssh ... 'powershell -Command "Start-Process powershell -ArgumentList \"-File E:\\path\\script.ps1\""'
 ```
 
-**schtasks (survives logoff):**
-```bash
-ssh ... 'powershell -Command "schtasks /create /tn \"MyTask\" /tr \"E:\\path\\launch.bat\" /sc once /st 00:00 /f; schtasks /run /tn \"MyTask\""'
-```
-
-Note: schtasks needs a .bat wrapper that calls PowerShell:
-```bat
-@echo off
-powershell -ExecutionPolicy Bypass -File "E:\path\script.ps1"
+### UTF-8 BOM Warning
+Files created on Windows (especially via PowerShell `Out-File` or
+Notepad) often have a UTF-8 BOM (byte order mark: `\xef\xbb\xbf`).
+This invisible prefix breaks Python's `toml` parser and other tools.
+Fix with:
+```python
+with open(path, "rb") as f:
+    raw = f.read()
+if raw[:3] == b'\xef\xbb\xbf':
+    with open(path, "wb") as f:
+        f.write(raw[3:])
 ```
 
 ### Tar-Pipe for Bulk File Transfer
