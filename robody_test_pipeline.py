@@ -45,6 +45,7 @@ from robody_graph_walker import (
     GraphWalker, run_walk, run_dream, run_gap_detection,
     compute_dream_parameters, dream_entropy, measure_novelty,
     sample_dream_peaks, extract_opening_images, extract_concepts,
+    TERRITORY_START_PROB,
 )
 from robody_weight_maintenance import (
     run_decay, apply_dream_updates, promote_confirmed_edges,
@@ -301,6 +302,75 @@ def test_graph_walker():
         t.check(isinstance(gaps, list), "Gap detection returns list")
         # Seed graph has structural gaps
         t.check(len(gaps) > 0, f"Found structural gaps ({len(gaps)})")
+
+        # --- Territory-biased dream starts ---
+
+        # Walker without territory bias has empty warm labels
+        w_no_bias = GraphWalker(db_path, territory_bias=False)
+        t.check(w_no_bias._warm_labels == [], "No-bias walker has empty warm labels")
+        w_no_bias.close()
+
+        # Create a fake warm territory marker
+        import robody_staging_log as staging_mod
+        staging_dir = staging_mod.STAGING_DIR
+        os.makedirs(staging_dir, exist_ok=True)
+        from robody_staging_log import WARM_MARKER
+
+        # Get some real node labels from the test DB
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row
+        sample_labels = [r["label"] for r in conn.execute(
+            "SELECT label FROM nodes LIMIT 5"
+        ).fetchall()]
+        conn.close()
+        t.check(len(sample_labels) > 0, f"Got sample labels for warm marker ({len(sample_labels)})")
+
+        marker_path = Path(staging_dir) / WARM_MARKER
+        marker_data = {
+            "timestamp": datetime.now().isoformat(),
+            "matched_labels": sample_labels,
+            "edges_warmed": 10,
+            "warm_map": {},
+        }
+        marker_path.write_text(json.dumps(marker_data))
+
+        # Walker WITH territory bias loads the warm labels
+        w_biased = GraphWalker(db_path, staging_dir=staging_dir, territory_bias=True)
+        t.check(len(w_biased._warm_labels) == len(sample_labels),
+                f"Biased walker loaded {len(w_biased._warm_labels)} warm labels")
+        t.check(set(w_biased._warm_labels) == set(sample_labels),
+                "Warm labels match marker file")
+
+        # Start node should work (might or might not be territory-biased,
+        # but it should always return a valid node)
+        start_nodes = []
+        for _ in range(50):
+            w_biased.current_node = None  # reset for fresh start
+            node = w_biased.get_random_start()
+            start_nodes.append(node["label"])
+        t.check(len(start_nodes) == 50, "Got 50 start nodes")
+
+        # With 20% territory probability over 50 starts, we expect ~10 territory
+        # starts on average. With 5 warm labels, at least some starts should land
+        # on one. (Statistical: P(0 territory starts in 50 trials) = 0.8^50 ≈ 0.0001)
+        territory_starts = sum(1 for l in start_nodes if l in sample_labels)
+        t.check(territory_starts > 0,
+                f"Territory bias produced {territory_starts}/50 territory starts")
+        # But also not ALL starts should be territory (that would be deterministic)
+        non_territory = 50 - territory_starts
+        t.check(non_territory > 0,
+                f"Non-territory starts also occurred ({non_territory}/50)")
+
+        w_biased.close()
+
+        # Clean up marker
+        marker_path.unlink(missing_ok=True)
+
+        # Verify missing marker = no warm labels
+        w_no_marker = GraphWalker(db_path, staging_dir=staging_dir, territory_bias=True)
+        t.check(w_no_marker._warm_labels == [],
+                "No marker file = no warm labels")
+        w_no_marker.close()
 
     RESULTS.append(t)
     return t

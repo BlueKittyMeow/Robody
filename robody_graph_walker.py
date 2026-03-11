@@ -34,6 +34,9 @@ DB_PATH = Path(__file__).parent / "robody_seed.sqlite"
 LOG_DIR = Path(__file__).parent / "interior_dialogue"
 OLLAMA_URL = "http://10.0.0.123:11434"
 
+# Territory-biased dream starts: probability of starting on a warmed node
+TERRITORY_START_PROB = 0.20  # 20% chance to start in today's territory
+
 # Brainstem parameters (from brainstem_notes.md)
 BRAINSTEM_MODEL = "robody-brainstem"
 BRAINSTEM_SYSTEM = """You are the quiet inner thoughts of a small wheeled robot who lives with
@@ -103,7 +106,7 @@ class GraphWalker:
     "mood" (which layer it's been spending time in).
     """
 
-    def __init__(self, db_path):
+    def __init__(self, db_path, staging_dir=None, territory_bias=False):
         self.conn = sqlite3.connect(db_path)
         self.conn.row_factory = sqlite3.Row
         self.current_node = None
@@ -111,9 +114,57 @@ class GraphWalker:
         self.history_max = 20
         self.layer_mood = 0        # current dominant layer
         self.thoughts = []         # generated background thoughts
+        self.territory_bias = territory_bias
+        self._warm_labels = self._load_warm_labels(staging_dir) if territory_bias else []
+
+    def _load_warm_labels(self, staging_dir):
+        """Load today's warmed node labels from the territory marker file.
+
+        Returns a list of node labels that were matched during territory
+        warming, or an empty list if no warm marker exists.
+        """
+        if staging_dir is None:
+            # Try the default staging dir from staging_log module
+            try:
+                from robody_staging_log import STAGING_DIR, WARM_MARKER
+                staging_dir = STAGING_DIR
+            except ImportError:
+                return []
+        else:
+            try:
+                from robody_staging_log import WARM_MARKER
+            except ImportError:
+                WARM_MARKER = "warm_territory.json"
+
+        marker = Path(staging_dir) / WARM_MARKER
+        if not marker.exists():
+            return []
+        try:
+            data = json.loads(marker.read_text())
+            return data.get("matched_labels", [])
+        except (json.JSONDecodeError, OSError):
+            return []
 
     def get_random_start(self):
-        """Pick a random starting node, weighted toward interesting types."""
+        """Pick a random starting node, with territory bias.
+
+        With TERRITORY_START_PROB probability, if today's territory has
+        been warmed, start from one of the warmed nodes. This gives
+        dreams a gentle pull toward what was on the robot's mind today
+        without making starts deterministic — 80% of the time, the old
+        random selection still applies.
+        """
+        # Territory-biased start: 20% chance to begin in today's territory
+        if self._warm_labels and random.random() < TERRITORY_START_PROB:
+            label = random.choice(self._warm_labels)
+            node = self.conn.execute(
+                "SELECT id, label, type FROM nodes WHERE label = ?",
+                (label,)
+            ).fetchone()
+            if node:
+                return node
+            # Label no longer in graph (race condition) — fall through
+
         # Try seed graph nodes first (3x more likely to start there)
         if random.random() < 0.3:
             node = self.conn.execute(
@@ -745,7 +796,7 @@ def measure_novelty():
     return score
 
 
-def run_dream(dry_run=False, verbose=True, noise_seed=None):
+def run_dream(dry_run=False, verbose=True, noise_seed=None, staging_dir=None):
     """
     Execute a dream cycle (Part 4 of dream architecture).
 
@@ -757,11 +808,15 @@ def run_dream(dry_run=False, verbose=True, noise_seed=None):
     Unlike background thoughts, dreams WRITE BACK to the graph:
     new speculative edges (Layer 2) are created from dream associations.
 
+    Args:
+        staging_dir: path to staging directory (for territory-biased starts).
+                     If None, uses default from robody_staging_log module.
+
     Returns: dict with dream summary, fragments, and new edges created
     """
     novelty = measure_novelty()
     params = compute_dream_parameters(novelty, noise_seed)
-    walker = GraphWalker(DB_PATH)
+    walker = GraphWalker(DB_PATH, staging_dir=staging_dir, territory_bias=True)
     walker.layer_mood = 2.0  # start in dream layer
 
     steps = params["steps"]
@@ -782,6 +837,11 @@ def run_dream(dry_run=False, verbose=True, noise_seed=None):
         print(f"Noise seed: {params['noise']:.4f}")
         print(f"Database: {DB_PATH}")
         print(f"Brainstem: {OLLAMA_URL} ({'dry run' if dry_run else 'live'})")
+        if walker._warm_labels:
+            print(f"Territory bias: ON ({len(walker._warm_labels)} warm nodes, "
+                  f"{TERRITORY_START_PROB:.0%} start probability)")
+        else:
+            print(f"Territory bias: OFF (no warm territory)")
         print(f"{'='*60}\n")
 
     i = 0
