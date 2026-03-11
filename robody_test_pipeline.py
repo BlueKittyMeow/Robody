@@ -372,6 +372,95 @@ def test_graph_walker():
                 "No marker file = no warm labels")
         w_no_marker.close()
 
+        # --- Novelty-to-self scoring ---
+
+        w_novelty = GraphWalker(db_path)
+
+        # Empty cluster = 0 novelty
+        score_empty = w_novelty.compute_novelty_score([], [])
+        t.check(score_empty == 0.0, "Empty cluster = 0 novelty")
+
+        # Cluster with speculative edges should score higher than pure factual
+        factual_edges = [
+            {"from": "music", "to": "sound", "type": "RelatedTo",
+             "layer": 0, "speculative": False},
+            {"from": "sound", "to": "hearing", "type": "RelatedTo",
+             "layer": 0, "speculative": False},
+        ]
+        speculative_edges = [
+            {"from": "music", "to": "grief", "type": "EvokesFeeling",
+             "layer": 2, "speculative": True},
+            {"from": "grief", "to": "silence", "type": "ContrastsWith",
+             "layer": 2, "speculative": True},
+        ]
+        score_factual = w_novelty.compute_novelty_score(
+            ["music", "sound", "hearing"], factual_edges)
+        score_speculative = w_novelty.compute_novelty_score(
+            ["music", "grief", "silence"], speculative_edges)
+        t.check(score_speculative > score_factual,
+                f"Speculative edges score higher ({score_speculative:.3f} > {score_factual:.3f})")
+
+        # Deep layer edges (layer 3+) should boost novelty
+        deep_edges = [
+            {"from": "self", "to": "curiosity", "type": "FeelsLike",
+             "layer": 3, "speculative": False},
+            {"from": "curiosity", "to": "music", "type": "DrivesExploration",
+             "layer": 3, "speculative": False},
+        ]
+        score_deep = w_novelty.compute_novelty_score(
+            ["self", "curiosity", "music"], deep_edges)
+        t.check(score_deep > score_factual,
+                f"Deep layer edges score higher ({score_deep:.3f} > {score_factual:.3f})")
+
+        # Diverse edge types should score higher than synonym-only
+        boring_edges = [
+            {"from": "music", "to": "song", "type": "Synonym",
+             "layer": 0, "speculative": False},
+            {"from": "song", "to": "tune", "type": "Synonym",
+             "layer": 0, "speculative": False},
+        ]
+        diverse_edges = [
+            {"from": "music", "to": "memory", "type": "EvokesMemory",
+             "layer": 1, "speculative": False},
+            {"from": "memory", "to": "grief", "type": "CausedBy",
+             "layer": 1, "speculative": False},
+        ]
+        score_boring = w_novelty.compute_novelty_score(
+            ["music", "song", "tune"], boring_edges)
+        score_diverse = w_novelty.compute_novelty_score(
+            ["music", "memory", "grief"], diverse_edges)
+        t.check(score_diverse > score_boring,
+                f"Diverse edges score higher ({score_diverse:.3f} > {score_boring:.3f})")
+
+        # Novelty scores should be in [0, 1]
+        t.check(0.0 <= score_factual <= 1.0, f"Factual score in range ({score_factual})")
+        t.check(0.0 <= score_speculative <= 1.0, f"Speculative score in range ({score_speculative})")
+
+        # --- Surfacing threshold ---
+
+        # High novelty should surface
+        surfaces, reason = w_novelty.should_surface(0.8)
+        t.check(surfaces, f"High novelty surfaces: {reason}")
+
+        # Low novelty should stay internal
+        stays_internal, reason = w_novelty.should_surface(0.2)
+        t.check(not stays_internal, f"Low novelty stays internal: {reason}")
+
+        # In conversation, threshold is higher
+        # A moderate score that would surface normally shouldn't during conversation
+        surfaces_normal, _ = w_novelty.should_surface(0.55)
+        surfaces_convo, _ = w_novelty.should_surface(0.55, in_conversation=True)
+        t.check(surfaces_normal and not surfaces_convo,
+                "Conversation raises surfacing threshold")
+
+        # Long silence lowers threshold
+        surfaces_recent, _ = w_novelty.should_surface(0.40, time_since_last_spoken=30)
+        surfaces_silence, _ = w_novelty.should_surface(0.40, time_since_last_spoken=700)
+        t.check(not surfaces_recent and surfaces_silence,
+                "Long silence lowers surfacing threshold")
+
+        w_novelty.close()
+
     RESULTS.append(t)
     return t
 

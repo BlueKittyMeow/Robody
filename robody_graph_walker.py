@@ -403,6 +403,124 @@ class GraphWalker:
 
         return impulse, edge_hints
 
+    def compute_novelty_score(self, cluster_labels, edge_hints):
+        """
+        Score a thought cluster on novelty-to-self.
+
+        This is the core of the surfacing mechanism. A thought is novel
+        when it surprises the thinker — when the graph walker made a
+        connection that's unusual, cross-domain, or involves uncertain
+        (speculative) territory.
+
+        Factors (each contributes 0.0–1.0, then averaged):
+          1. Speculative edge ratio — uncertain connections are interesting
+          2. Cluster span — nodes from different types/clusters = cross-domain
+          3. Layer depth — higher layers (feeling, identity) carry more weight
+          4. Edge diversity — many different relationship types = rich connection
+          5. Recency delta — visiting neglected or freshly-primed nodes
+
+        Returns: float 0.0–1.0 (higher = more novel)
+        """
+        if not cluster_labels or not edge_hints:
+            return 0.0
+
+        scores = []
+
+        # 1. Speculative edge ratio (0.0–1.0)
+        # Speculative edges are uncertain, exploratory — they're interesting
+        spec_count = sum(1 for e in edge_hints if e.get("speculative"))
+        spec_ratio = spec_count / len(edge_hints) if edge_hints else 0
+        scores.append(min(spec_ratio * 2, 1.0))  # boost: even 50% speculative is max
+
+        # 2. Cluster span — how many different node types are represented?
+        # More diverse types = cross-domain thinking
+        node_types = set()
+        for label in cluster_labels:
+            row = self.conn.execute(
+                "SELECT type FROM nodes WHERE label = ?", (label,)
+            ).fetchone()
+            if row:
+                node_types.add(row["type"])
+        type_diversity = min(len(node_types) / 4.0, 1.0)  # 4+ types = max
+        scores.append(type_diversity)
+
+        # 3. Layer depth — edges in higher layers carry emotional weight
+        # Layer 0 = fact, 1 = association, 2 = dream, 3+ = feeling/identity
+        if edge_hints:
+            max_layer = max(e.get("layer", 0) for e in edge_hints)
+            avg_layer = sum(e.get("layer", 0) for e in edge_hints) / len(edge_hints)
+            layer_score = min(avg_layer / 2.0, 1.0)  # avg layer 2+ = max
+            # Bonus for touching deep layers at all
+            if max_layer >= 3:
+                layer_score = min(layer_score + 0.3, 1.0)
+            scores.append(layer_score)
+        else:
+            scores.append(0.0)
+
+        # 4. Edge diversity — many relationship types = rich connection
+        edge_types = set(e.get("type", "") for e in edge_hints)
+        # Remove boring types from diversity count
+        interesting_types = edge_types - {"Synonym", "RelatedTo"}
+        diversity = min(len(interesting_types) / 3.0, 1.0)  # 3+ interesting types = max
+        scores.append(diversity)
+
+        # 5. Recency delta — are we visiting neglected nodes?
+        # Check how far these nodes are from today's warm territory
+        # (if warm labels are loaded, nodes NOT in warm territory are
+        # more surprising; if no warm labels, skip this factor)
+        if self._warm_labels:
+            warm_overlap = sum(1 for l in cluster_labels if l in self._warm_labels)
+            # LESS overlap with today's territory = MORE surprising
+            non_overlap = 1 - (warm_overlap / len(cluster_labels))
+            scores.append(non_overlap)
+
+        # Weighted average (all factors contribute equally for now)
+        novelty = sum(scores) / len(scores) if scores else 0.0
+        return round(novelty, 3)
+
+    def should_surface(self, novelty_score, time_since_last_spoken=None,
+                       in_conversation=False):
+        """
+        Decide whether a thought should cross from inner monologue to
+        spoken word.
+
+        Most thoughts stay internal (logged to staging for later dreaming).
+        Only genuinely novel ones are worth saying aloud.
+
+        Args:
+            novelty_score: float 0.0–1.0 from compute_novelty_score()
+            time_since_last_spoken: seconds since last spoken thought (or None)
+            in_conversation: if True, raise the threshold (don't interrupt)
+
+        Returns: (bool, str reason)
+        """
+        # Base threshold — must clear this to speak
+        threshold = 0.45
+
+        # In conversation, raise threshold — don't interrupt with musings
+        if in_conversation:
+            threshold = 0.70
+
+        # Time pressure — if it's been a while since speaking, lower threshold
+        # This prevents long silences during quiet companionship
+        if time_since_last_spoken is not None:
+            if time_since_last_spoken > 600:  # 10+ minutes of silence
+                threshold -= 0.15
+            elif time_since_last_spoken > 300:  # 5+ minutes
+                threshold -= 0.08
+            elif time_since_last_spoken < 60:  # spoke recently
+                threshold += 0.10  # higher bar — don't babble
+
+        # Clamp threshold to sane range
+        threshold = max(0.25, min(threshold, 0.85))
+
+        if novelty_score >= threshold:
+            reason = f"novelty {novelty_score:.2f} >= threshold {threshold:.2f}"
+            return True, reason
+        else:
+            reason = f"novelty {novelty_score:.2f} < threshold {threshold:.2f}"
+            return False, reason
+
     def close(self):
         self.conn.close()
 
@@ -563,8 +681,18 @@ def run_walk(steps=100, density_threshold=3, density_window=6, dry_run=False, ve
 
             impulse, edges = walker.format_cluster_as_impulse(cluster)
 
+            # Compute novelty-to-self
+            novelty = walker.compute_novelty_score(cluster, edges)
+            surfaced, surface_reason = walker.should_surface(
+                novelty,
+                time_since_last_spoken=None,  # TODO: track in daemon
+                in_conversation=False,        # TODO: state from heartbeat
+            )
+
             if verbose:
-                print(f"\n  *** DENSITY DETECTED (score={score:.2f}) ***")
+                surface_tag = "SURFACED" if surfaced else "internal"
+                print(f"\n  *** DENSITY DETECTED (score={score:.2f}, "
+                      f"novelty={novelty:.2f} [{surface_tag}]) ***")
                 print(f"  Cluster: {cluster}")
                 print(f"  Edge types: {dict(edge_types)}")
                 print(f"  [subconscious] → {impulse}")
@@ -575,8 +703,9 @@ def run_walk(steps=100, density_threshold=3, density_window=6, dry_run=False, ve
             elapsed = time.time() - t0
 
             if verbose:
-                print(f"  [consciousness] → {thought}")
-                print(f"  (brainstem latency: {elapsed:.2f}s)\n")
+                label = "[spoken]" if surfaced else "[inner]"
+                print(f"  {label} → {thought}")
+                print(f"  ({surface_reason}, latency: {elapsed:.2f}s)\n")
 
             # Log the exchange
             entry = {
@@ -585,6 +714,9 @@ def run_walk(steps=100, density_threshold=3, density_window=6, dry_run=False, ve
                 "source": "background_thought",
                 "cluster": cluster,
                 "density_score": round(score, 3),
+                "novelty_score": novelty,
+                "surfaced": surfaced,
+                "surface_reason": surface_reason,
                 "edges_in_cluster": len(edges),
                 "speculative_edges": sum(1 for e in edges if e["speculative"]),
                 "impulse": impulse,
