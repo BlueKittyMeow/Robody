@@ -6,16 +6,25 @@
 
 ## Kit Base
 
-| Item | Source | Price | Status |
-|------|--------|-------|--------|
-| SparkFun JetBot AI Kit v2.0 | SparkFun | (owned) | ✅ Have |
-| Jetson Nano 4GB | (included in kit) | — | ✅ Have |
-| Leopard Imaging 136 FOV Camera | (included in kit) | — | ✅ Have |
-| SparkFun Qwiic Motor Driver | (included in kit) | — | ✅ Have |
-| OLED Display | (included in kit) | — | ✅ Have |
-| Qwiic pHAT | (included in kit) | — | ✅ Have |
-| Edimax WiFi Adapter | (included in kit) | — | ✅ Have |
-| Eunicell USB Power Bank | (included in kit) | — | ✅ Have (replacing) |
+*Originally SparkFun JetBot AI Kit v2.0. Chassis and wheels have been replaced with mecanum wheel platform; motor driver replaced with Adafruit Motor HAT. Several kit components still in use.*
+
+| Item | Source | Price | Status | Notes |
+|------|--------|-------|--------|-------|
+| SparkFun JetBot AI Kit v2.0 | SparkFun | (owned) | ✅ Have | Base kit — chassis/wheels/motor driver replaced, other components retained |
+| Jetson Nano 4GB | (included in kit) | — | ✅ Have | Compute core, flashed with stock JetPack 4.6.1 |
+| Leopard Imaging 136 FOV Camera | (included in kit) | — | ✅ Have | |
+| SparkFun Qwiic Motor Driver | (included in kit) | — | ⬜ Replaced | Replaced by Adafruit DC+Stepper Motor HAT (TB6612, I2C, 4 channels) |
+| OLED Display | (included in kit) | — | ✅ Have | |
+| Qwiic pHAT | (included in kit) | — | ✅ Have | |
+| Edimax WiFi Adapter | (included in kit) | — | ✅ Have | |
+| Eunicell USB Power Bank | (included in kit) | — | ⬜ Replaced | Replaced by 52Pi EP-0245 UPS with 18650 cells |
+
+### Chassis & Drive Train (Modified)
+
+| Item | Source | Price | Status | Notes |
+|------|--------|-------|--------|-------|
+| Mecanum wheel chassis | (modified from SparkFun kit) | (owned) | ✅ Have | Replaced stock wheels. 4 mecanum wheels with worm-gear drives enabling omnidirectional movement (lateral, diagonal, rotation in place). |
+| Adafruit DC+Stepper Motor HAT | B00TIY5JM8 | Amazon/Adafruit | (owned) | ✅ Have | TB6612 chipset, 4 DC motor channels, 1.2A/channel (3A peak), I2C control via PCA9685 PWM. Stacks on Nano GPIO header. Motor power jumpered from GPIO 5V rail (no external motor power supply). |
 
 ---
 
@@ -27,10 +36,15 @@ The stock Eunicell battery requires manual USB charging. This upgrade adds I2C-m
 
 | Item | SKU | Source | Price | Status | Notes |
 |------|-----|--------|-------|--------|-------|
-| DFRobot UPS HAT for Jetson Nano | DFR0865 | DFRobot | $49.90 | 🛒 To order | 5.1V @ 8A, I2C fuel gauge (Maxim), power path (charge while running), BMS with overcharge/overdischarge/overcurrent/short protection. Accepts 1-6x 18650. Mounts on GPIO header. |
-| Samsung 35E 18650 cells (×6) | INR18650-35E | 18650batterystore.com | $26.50 shipped | ✅ Ordered | Flat-top unprotected. 3500mAh, 8A continuous, 65mm, 3.6V nominal. 6 cells = ~21,000mAh, est. 6-8hr runtime (~3× stock). ETA 3-5 days from order date (March 3). |
+| 52Pi UPS v6 (EP-0245) | EP-0245 | 52Pi | (owned) | ✅ Have | **PRODUCTION UPS.** V1.8 board (2025/6/4). Connects to Jetson Nano via pogo pins on GPIO header. I2C telemetry for battery level monitoring (essential for autonomous recharge docking). USB-C charging input — will be spliced with magnetic pogo breakaway for dock-and-charge. Supports passthrough charging. |
+| DFRobot UPS HAT for Jetson Nano | DFR0865 | DFRobot | $49.90 | ✅ Ordered (not using) | Originally ordered but replaced by 52Pi EP-0245 in production build. 5.1V @ 8A, I2C fuel gauge. Keeping as spare/bench supply. |
+| Samsung 35E 18650 cells (×6) | INR18650-35E | 18650batterystore.com | $26.50 shipped | ✅ Have | Flat-top unprotected. 3500mAh, 8A continuous, 65mm, 3.6V nominal. 6 cells wired into EP-0245: 2-cell bay + 4-cell expansion bay per 52Pi instructions. |
 
-**GPIO stacking note:** Both the UPS HAT and Qwiic pHAT need the Jetson's 2×20 GPIO header. May need stacking headers (~$2) to accommodate both. Resolve when parts arrive.
+**Power architecture:** Single power path — 18650s → EP-0245 UPS regulator → 5V via GPIO pogo pins → Jetson Nano → Motor HAT (jumpered from GPIO 5V rail). Motors, compute, and all peripherals draw from the same 5V rail. Autonomous dock charging via USB-C magnetic breakaway connector on the EP-0245's USB-C port. Battery telemetry over I2C enables the AI to monitor charge level and trigger autonomous dock-seek behavior.
+
+**J48 jumper:** Left UNJUMPERED. Power enters via GPIO header pins from UPS, not barrel jack. Micro-USB port remains free for serial console (headless setup).
+
+**GPIO stacking note:** EP-0245 connects via pogo pins (bottom of stack), Motor HAT via standard header (top of stack). Qwiic pHAT may need stacking headers (~$2) to fit in between. Resolve when assembling full stack.
 
 ### Docking Connectors
 
@@ -39,7 +53,7 @@ The stock Eunicell battery requires manual USB charging. This upgrade adds I2C-m
 | Adafruit 5-pin Magnetic Pogo Connector | #5359 | Adafruit | $6.95 | 🛒 To order | Male+female pair. Spring-loaded gold-plated pins, neodymium magnets, ~200-400g pull force (motors can overcome for undocking), 100K+ mate cycles. Wiring: 2 pins power, 2 pins ground, 1 pin dock-detect GPIO signal. Doubled power/ground = 4A capacity (need 3A). |
 | Adafruit USB-C Vertical Breakout | #5993 | Adafruit | $2.95 | 🛒 To order | CC resistors for 1.5A default negotiation. Nice-to-have — main charging goes through sacrificial cable to HAT's own USB-C port which handles full power negotiation. Horizontal version (#4090) out of stock. |
 
-**Charging wiring plan:** Cut one USB-C cable in half. Robot side: intact plug into HAT's USB-C charge port, cut end soldered to robot-side pogo. Dock side: cut end soldered to dock-side pogo, USB-C end plugs into wall adapter. HAT handles all power negotiation.
+**Charging wiring plan:** USB-C magnetic breakaway connector spliced inline on the charging cable to the EP-0245's USB-C port. Robot backs up to dock, magnetic pins align and connect, UPS charges via USB-C passthrough while robot continues operating. Robot drives forward to undock — magnetic breakaway disconnects cleanly. No manual plugging ever required.
 
 ### Dock Cradle
 
@@ -76,13 +90,13 @@ New sensors beyond the JetBot kit and existing inventory, adding new perceptual 
 
 ### Ordered — DFRobot ($81.20, free shipping) — 2026-03-05
 
-| Item | Price |
-|------|-------|
-| UPS HAT (DFR0865) | $49.90 |
-| Voice Recognition Sensor (SEN0539-EN) | $16.90 |
-| mmWave Presence Sensor (SEN0610) | $12.90 |
-| I2C HUB (DFR0759) | $1.50 |
-| **Total** | **$81.20** |
+| Item | Price | Notes |
+|------|-------|-------|
+| UPS HAT (DFR0865) | $49.90 | Not using in production — replaced by 52Pi EP-0245. Keeping as spare. |
+| Voice Recognition Sensor (SEN0539-EN) | $16.90 | |
+| mmWave Presence Sensor (SEN0610) | $12.90 | |
+| I2C HUB (DFR0759) | $1.50 | |
+| **Total** | **$81.20** | |
 
 ### Ordered — Amazon Prime — 2026-03-05
 
@@ -141,11 +155,11 @@ Key items already owned and allocated to Robody — see robody_dream_architectur
 ## Future Considerations (Not Yet Spec'd)
 
 - **Samsung S22 Ultra as face/display** (owned, WiFi-only) — 6.8" AMOLED, 1440×3088. Serve a React web app over local WiFi, phone opens it in fullscreen. WebSocket connection to Robody backend for real-time state updates. Display could mix generated images (via ComfyUI on MarshLair), Giphy pulls for reactive moments, and layered UI elements (mood colors, text, particles). AMOLED burn-in consideration: favor dark backgrounds with moving elements, periodic subtle shifts. Needs: wake lock (Android dev settings or wrapper app), permanent USB-C power, mount solution. The phone is just a gorgeous dumb screen — all logic server-side, swappable for any browser-capable device.
-- **Stacking headers** (~$2) — if UPS HAT + Qwiic pHAT won't fit on GPIO simultaneously
+- **Stacking headers** (~$2) — if EP-0245 + Motor HAT + Qwiic pHAT won't all fit on GPIO simultaneously
 - **Clear dome** — protective enclosure, pet-hair defense, aesthetic. 3D print / vacuum form / commercial source TBD
 - **GPS module** — for Walk Mode outdoor navigation (see robody_architecture.md)
 - **ReSpeaker or similar** — directional audio array for TV discrimination (see architecture addendum)
-- **Larger wheels / bumper** — outdoor/uneven terrain capability
+- **Bumper ring** — furniture/toe protection for mecanum chassis
 - **SuperCollider on Jetson** — real-time synthesis engine (research pending)
 
 ---
