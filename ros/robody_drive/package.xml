@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robody_drive</name>
+  <version>0.1.0</version>
+  <description>Mecanum wheel drive node for Robody (Jetson Nano + Adafruit Motor HAT)</description>
+
+  <maintainer email="uponmidnightdreary@gmail.com">Lara</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>nav_msgs</depend>
+
+  <exec_depend>python3-smbus2</exec_depend>
+</package>

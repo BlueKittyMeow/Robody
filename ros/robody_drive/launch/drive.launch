@@ -1,0 +1,27 @@
+<!-- drive.launch — start Robody's full mecanum drive stack -->
+<launch>
+
+  <!-- Python 3 motor server (owns hardware, runs as a node via shell wrapper) -->
+  <node name="motor_server"
+        pkg="robody_drive"
+        type="motor_server_wrapper.sh"
+        output="screen"
+        respawn="true"
+        respawn_delay="3" />
+
+  <!-- Python 2 ROS node (owns /cmd_vel subscription, bridges to motor_server) -->
+  <node name="mecanum_drive"
+        pkg="robody_drive"
+        type="mecanum_drive_node.py"
+        output="screen"
+        respawn="true"
+        respawn_delay="5">
+
+    <param name="max_linear_speed"    value="0.4" />   <!-- m/s  -->
+    <param name="max_angular_speed"   value="1.2" />   <!-- rad/s -->
+    <param name="cmd_vel_timeout"     value="0.5" />
+    <param name="battery_interval"    value="30.0" />
+    <param name="motor_server_port"   value="9877" />
+  </node>
+
+</launch>
