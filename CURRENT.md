@@ -1,70 +1,80 @@
 # Current Status & Next Steps
-*Updated: March 26, 2026*
+*Updated: March 27, 2026*
 
 ---
 
 ## Where We Are
 
-JetPack 4.6.1 has been flashed to the Jetson Nano's SD card (stock NVIDIA image, not SparkFun custom). The hardware stack is physically assembled: 52Pi EP-0245 UPS (bottom, pogo pins) → Jetson Nano (middle) → Adafruit Motor HAT (top, needs motor power jumper). Chassis has been modified from the original SparkFun JetBot to mecanum wheels with worm-gear drives for omnidirectional movement. Six Samsung 35E 18650 cells are wired into the EP-0245 (2-cell bay + 4-cell expansion).
+Robody is ONLINE. Jetson Nano booted, networked, and SSH-accessible from MysteryOfGlass.
 
-Software architecture is complete — all 11 Python modules, 149 tests passing, dream architecture designed and experimentally validated. No hardware integration yet.
+### Completed (March 27)
 
----
+- JetPack 4.6.1 flashed to 32GB SD card (first card was corrupt, reflashed to new card)
+- OOBE completed via HDMI + keyboard (headless serial requires barrel jack power; USB gadget mode not available when powered via GPIO)
+- WiFi connected: Edimax EW-7611ULB driver (rtl8723bu) compiled from source and installed, persists across reboots via /etc/modules
+- SSH: passwordless from MysteryOfGlass, IP 192.168.1.166 (WiFi) / 192.168.1.165 (eth)
+- Power mode: 5W (`nvpmodel -m 1`)
+- I2C verified: Motor HAT @ 0x60, UPS fuel gauge @ 0x17
+- ROS Melodic installed (ros-base + 79 packages, sourced in bashrc)
+- Adafruit MotorKit library installed and loading (pinned for Python 3.6 compatibility: Jetson.GPIO 2.0.21, busdevice 5.1.1, motorkit 1.6.4, pca9685 3.4.4, motor 3.4.3, register 1.9.8, dataclasses backport)
+- smbus2 installed for UPS I2C telemetry
+- Robody added to Hearth config as monitored machine
 
-## Immediate Next Steps (Pre-Boot)
-
-1. **Solder motor power jumper on Motor HAT** — Two short wires from the +5V and GND through-holes on the Motor HAT's power breakout column to the + and − pads of the 5-12V Motor Power screw terminal. This connects motor power to the GPIO 5V rail from the UPS. Strip, insert into screw terminal, solder through-hole side.
-
-2. **Charge 18650 batteries** — Plug USB-C into the EP-0245 and let cells charge to 100% (all four LEDs solid). Can take several hours from empty.
-
-3. **Connect motors to Motor HAT** — Wire four mecanum wheel motors to M1–M4 screw terminals on the Motor HAT. Note which motor maps to which wheel position for later software configuration.
-
----
-
-## First Boot (Headless Setup)
-
-The EP-0245 powers the Nano via GPIO, leaving the micro-USB port free for serial console. No barrel jack needed. J48 jumper left open.
-
-1. Insert flashed SD card into Jetson Nano
-2. Connect micro-USB cable from Nano to laptop
-3. Disconnect USB-C charger (run on battery)
-4. Power on — EP-0245 feeds 5V to Nano via pogo pins
-5. On laptop: `screen /dev/ttyACM0 115200` (or `minicom`)
-6. Walk through NVIDIA OOBE over serial (user account, locale, network)
-7. Set `sudo nvpmodel -m 1` (5W mode to reduce power draw during setup)
-8. Configure WiFi so we can SSH in going forward
-9. SSH in from main machine — no more serial cable needed
-
----
-
-## Post-Boot Software Setup
-
-1. **System updates** — `sudo apt update && sudo apt upgrade`
-2. **Enable I2C** — Verify `/dev/i2c-*` devices are present for Motor HAT and UPS telemetry
-3. **Install ROS Melodic** — Matching version for Ubuntu 18.04 / JetPack 4.6.x. ROS is the "spinal cord" layer: motor control, path planning, SLAM, obstacle avoidance.
-4. **Mecanum wheel ROS packages** — `mecanum_drive` (cmd_vel → individual wheel velocities), nav stack with `holonomic_robot: true`, GMapping + TEB planner for SLAM.
-5. **Adafruit Motor HAT library** — `pip3 install adafruit-circuitpython-motorkit`. Test individual motor control over I2C.
-6. **EP-0245 I2C telemetry** — Read battery voltage/percentage over I2C for autonomous charge monitoring.
-7. **Deploy Robody brainstem** — Initial heartbeat loop, sensor polling, drive landscape.
-
----
-
-## Hardware Stack (Bottom to Top)
+### Hardware Stack (Assembled)
 
 ```
 ┌─────────────────────────┐
-│   Adafruit Motor HAT    │  ← TB6612, I2C motor control, 4 channels
-│   (GPIO header, top)    │     Motor power jumpered from 5V rail
+│   Adafruit Motor HAT    │  ← TB6612, I2C @ 0x60, 4 channels
+│   (GPIO header, top)    │     Motor power: NEEDS JUMPER from 5V rail
 ├─────────────────────────┤
-│   Jetson Nano 4GB       │  ← JetPack 4.6.1, compute core
-│   (GPIO header, middle) │     micro-USB free for serial console
+│   Jetson Nano 4GB       │  ← JetPack 4.6.1, Ubuntu 18.04, Python 3.6
+│   (GPIO header, middle) │     192.168.1.166 (WiFi) / .165 (eth)
 ├─────────────────────────┤
-│   52Pi EP-0245 UPS v6   │  ← 6× 18650 cells, 5V regulated output
-│   (pogo pins, bottom)   │     USB-C charging, I2C battery telemetry
+│   52Pi EP-0245 UPS v6   │  ← 6× 18650 cells, I2C fuel gauge @ 0x17
+│   (pogo pins, bottom)   │     USB-C charging, passthrough capable
 ├─────────────────────────┤
 │   Mecanum Wheel Chassis │  ← Omnidirectional: lateral, diagonal, spin
 │   (4 motors, worm gear) │     Modified from SparkFun JetBot base
 └─────────────────────────┘
+```
+
+---
+
+## Immediate Next Steps
+
+### Hardware (Lara)
+
+1. **Solder motor power jumper** — Two short wires from +5V and GND through-holes to the + and − of the Motor HAT's 5-12V power screw terminal
+2. **Wire motors to Motor HAT** — Connect four mecanum motors to M1–M4 screw terminals. Note which motor maps to which wheel position
+
+### Software (Claude)
+
+1. **Motor test script** — Write a simple Python script to test each motor individually over I2C (spin M1, M2, M3, M4 in sequence)
+2. **UPS telemetry script** — Read battery voltage/percentage from EP-0245 fuel gauge at 0x17 over I2C
+3. **Mecanum kinematics** — Implement cmd_vel → individual wheel speed mapping for omnidirectional control
+4. **ROS mecanum node** — ROS node wrapping the MotorKit to accept geometry_msgs/Twist and drive mecanum wheels
+5. **Deploy Robody heartbeat** — Get the core SENSE→NOTICE→THINK→DECIDE→LOG loop running on the Nano
+
+---
+
+## Connection Reference
+
+```
+# SSH (passwordless from MysteryOfGlass)
+ssh bluekitty@192.168.1.166
+
+# Check motor HAT
+python3 -c "from adafruit_motorkit import MotorKit; kit = MotorKit(); print('OK')"
+
+# Check I2C devices
+sudo i2cdetect -y -r 1
+
+# ROS
+source /opt/ros/melodic/setup.bash
+rosversion -d    # should print "melodic"
+
+# Power mode
+sudo nvpmodel -q   # 1 = 5W mode
 ```
 
 ---
@@ -79,7 +89,7 @@ EP-0245 UPS regulator → 5V
     │
     ├──→ Jetson Nano (compute, camera, WiFi, sensors)
     │
-    └──→ Motor HAT 5V rail (4× mecanum motors)
+    └──→ Motor HAT 5V rail (4× mecanum motors) [NEEDS SOLDER JUMPER]
 
 Charging: USB-C magnetic breakaway → EP-0245 → cells
           (autonomous dock-and-charge, no manual plugging)
@@ -87,4 +97,13 @@ Charging: USB-C magnetic breakaway → EP-0245 → cells
 
 ---
 
-*Previous status: All software modules complete, tests passing. This document tracks the hardware integration phase.*
+## Known Issues / Notes
+
+- **Python 3.6 on JetPack 4.6.1**: Latest Adafruit/Jetson.GPIO packages use features unavailable in 3.6. Libraries pinned to compatible versions. May need to upgrade Python or use virtualenv for newer packages later.
+- **WiFi driver compiled from source**: rtl8723bu not in stock kernel. Module persisted in /etc/modules. If kernel updates, driver needs recompile.
+- **Serial console**: USB gadget mode (ttyACM0) only works when barrel jack power is used with J48 jumpered. With GPIO power from UPS, micro-USB does NOT expose serial. Use SSH for all remote access.
+- **Disk space**: 15GB free on 32GB card. Monitor carefully when installing additional packages.
+
+---
+
+*Software architecture (all 11 Python modules, 149 tests) is complete and waiting for hardware integration. This document tracks the bring-up phase.*
