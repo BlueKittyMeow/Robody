@@ -19,6 +19,10 @@ Robody is ONLINE. Jetson Nano booted, networked, and SSH-accessible from Mystery
 - Adafruit MotorKit library installed and loading (pinned for Python 3.6 compatibility: Jetson.GPIO 2.0.21, busdevice 5.1.1, motorkit 1.6.4, pca9685 3.4.4, motor 3.4.3, register 1.9.8, dataclasses backport)
 - smbus2 installed for UPS I2C telemetry
 - Robody added to Hearth config as monitored machine
+- **scripts/ written and deployed to ~/scripts/ on Nano:**
+  - `motor_test.py` — test each M1–M4 terminal individually, verify wheel direction, optional mecanum demo mode
+  - `ups_telemetry.py` — reads live battery/voltage/current/temp from EP-0245 (register map calibrated from live dump: 0x12=battery mV, 0x0E=5V rail, 0x1A=current signed, 0x1F=status). Verified: 53% SOC, 7.46V, 5.15V rail, 27°C
+  - `mecanum.py` — MecanumDrive class: move(vx, vy, omega) → wheel throttles; forward/backward/strafe/rotate helpers; normalizes to ±1.0; ready to wrap in ROS node
 
 ### Hardware Stack (Assembled)
 
@@ -49,11 +53,12 @@ Robody is ONLINE. Jetson Nano booted, networked, and SSH-accessible from Mystery
 
 ### Software (Claude)
 
-1. **Motor test script** — Write a simple Python script to test each motor individually over I2C (spin M1, M2, M3, M4 in sequence)
-2. **UPS telemetry script** — Read battery voltage/percentage from EP-0245 fuel gauge at 0x17 over I2C
-3. **Mecanum kinematics** — Implement cmd_vel → individual wheel speed mapping for omnidirectional control
-4. **ROS mecanum node** — ROS node wrapping the MotorKit to accept geometry_msgs/Twist and drive mecanum wheels
+1. ~~Motor test script~~ — Done (`scripts/motor_test.py`)
+2. ~~UPS telemetry script~~ — Done (`scripts/ups_telemetry.py`)
+3. ~~Mecanum kinematics~~ — Done (`scripts/mecanum.py`)
+4. **ROS mecanum node** — ROS node wrapping MecanumDrive to accept geometry_msgs/Twist
 5. **Deploy Robody heartbeat** — Get the core SENSE→NOTICE→THINK→DECIDE→LOG loop running on the Nano
+6. **System updates** — `apt upgrade` on Nano (was attempted earlier but timed out)
 
 ---
 
