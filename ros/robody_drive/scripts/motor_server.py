@@ -73,7 +73,8 @@ class MotorServer:
         try:
             from mecanum import MecanumDrive
             self.drive = MecanumDrive()
-            log.info("MecanumDrive initialized @ I2C 0x60")
+            self.drive.stop()  # belt-and-suspenders: explicit zero after init
+            log.info("MecanumDrive initialized @ I2C 0x60 — all motors zeroed")
         except Exception as e:
             log.error(f"MecanumDrive init failed: {e}")
             log.warning("Running in SIMULATION mode — no motors will turn")

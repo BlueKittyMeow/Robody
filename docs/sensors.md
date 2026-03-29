@@ -1,5 +1,5 @@
 # Robody Sensor Stack — Dependencies & Integration Notes
-*Researched: March 2026 — do not install yet, see status flags*
+*Researched: March 2026 — updated March 29 after successful hardware integration*
 
 ---
 
@@ -40,7 +40,34 @@ DFRobot library uses `import smbus` (not `import smbus2`). Two options:
 - Option A: `sudo apt install python3-smbus` (installs legacy smbus from i2c-tools)
 - Option B: Write wrapper using `smbus2` directly (preferred — cleaner, already installed)
 
-**Status:** `📦 Not yet received / 🔴 Not installed`
+**⚠️⚠️ CRITICAL: DIP SWITCHES (learned the hard way, March 29 2026):**
+The C4001 has **TWO DIP switches** on the board:
+- **Protocol switch**: UART vs I2C. Ships defaulting to UART! If set to UART, the sensor's TX line floods the I2C bus with serial data, creating phantom devices at 30+ addresses and making the Motor HAT unreachable. **Must be set to I2C.**
+- **Address switch**: 0x2A (default) vs 0x2B. Set to whichever is free on your bus.
+- After flipping DIP switches, **power-cycle the sensor** (unplug and replug from Gravity hub).
+
+**⚠️⚠️ CRITICAL: I2C PROTOCOL — NO BARE READS:**
+The C4001 does NOT tolerate bare `read_byte(addr)` or `i2cdetect -r` scans.
+It ACKs its address but then holds SDA low indefinitely waiting for a register
+byte that never comes. This **locks the entire I2C bus** — all other devices
+become unreachable until power cycle or Tegra I2C controller reset.
+
+**Safe approach:** Always use `read_i2c_block_data(0x2A, register, length)`.
+For example, to check if the sensor is alive: `read_i2c_block_data(0x2A, 0x00, 1)`.
+
+A `safe-i2cdetect` wrapper and `safe-i2c-scan` utility are deployed on the Nano
+to prevent accidental bare scans. See `/usr/local/bin/safe-i2cdetect` and
+`/usr/local/bin/safe-i2c-scan`.
+
+**Bus recovery if locked:** Unbind/rebind the Tegra I2C controller:
+```bash
+echo '7000c400.i2c' | sudo tee /sys/bus/platform/drivers/tegra-i2c/unbind
+sleep 1
+echo '7000c400.i2c' | sudo tee /sys/bus/platform/drivers/tegra-i2c/bind
+```
+This only works if the offending device has been physically removed. Otherwise reboot.
+
+**Status:** `✅ Connected and working (March 29, 2026)`
 
 ---
 
@@ -77,7 +104,11 @@ sudo apt install python3-numpy
 ```
 Numpy for aarch64/Python 3.6 is available and well-tested. Should install cleanly.
 
-**Status:** `📦 Not yet received / 🔴 Not installed`
+**Note:** Unlike the C4001, the DF2301Q tolerates bare `read_byte()` fine.
+It's safe to use `i2cdetect` for this device specifically. The thin wrapper
+uses `read_i2c_block_data` for consistency but `read_byte` also works.
+
+**Status:** `✅ Connected and working (March 29, 2026)`
 
 ---
 
@@ -105,7 +136,7 @@ All clear. No conflicts on any planned combination.
 
 **One caveat on bus loading:** Passive hubs increase I2C bus capacitance. With 5 devices, pull-up resistors (usually 4.7kΩ to 3.3V) may need to be lowered if signals get floppy at fast speeds. At 100kHz (standard mode) this is never an issue.
 
-**Status:** `📦 Not yet received / ✅ No installation needed`
+**Status:** `✅ Connected, routing all sensors (March 29, 2026)`
 
 ---
 
@@ -138,37 +169,63 @@ All routed through DFR0759 passive hub for tidy wiring.
 
 ---
 
-## Installation Plan (when sensors arrive)
+## Installation Record (completed March 29, 2026)
 
-Do this in order. Don't install yet.
+All sensors connected and verified. Here's what was actually done:
 
 ```bash
-# 1. Check bus is clean before adding new devices
-sudo i2cdetect -y -r 1
-# expect: 0x17, 0x60, 0x70 only
+# Dependencies (were already installed during pre-staging)
+# python3-smbus 4.0-2, numpy 1.13.3, pyserial, smbus2 all present
 
-# 2. Install smbus (for DFRobot library compatibility)
-sudo apt install python3-smbus
+# DFRobot libraries cloned for reference (NOT used directly)
+# ~/lib/DFRobot_C4001/, ~/lib/DFRobot_DF2301Q/
 
-# 3. numpy (for DF2301Q)
-pip3 install numpy --break-system-packages
+# Safe bus scan (NEVER use bare i2cdetect -r on bus 1!)
+safe-i2c-scan
+# 0x17 UPS ✓, 0x2A mmWave ✓, 0x60 Motor HAT ✓, 0x64 Voice ✓
 
-# 4. pyserial (in case UART mode ever needed)
-pip3 install pyserial --break-system-packages
+# Test C4001 — MUST use register-addressed read
+python3 -c "import smbus2; b=smbus2.SMBus(1); print(b.read_i2c_block_data(0x2A, 0x00, 1))"
 
-# 5. Clone DFRobot libraries (to ~/lib/)
-mkdir -p ~/lib
-git clone https://github.com/DFRobot/DFRobot_C4001 ~/lib/DFRobot_C4001
-git clone https://github.com/DFRobot/DFRobot_DF2301Q ~/lib/DFRobot_DF2301Q
-
-# 6. Test C4001 at 0x2A after physical connection
-python3 -c "import smbus2; b=smbus2.SMBus(1); print(hex(b.read_byte(0x2A)))"
-
-# 7. Test DF2301Q at 0x64
+# Test DF2301Q — bare read is fine for this device
 python3 -c "import smbus2; b=smbus2.SMBus(1); print(hex(b.read_byte(0x64)))"
 ```
 
-**Then** write thin wrappers using `smbus2` directly rather than patching DFRobot's libraries.
+Thin wrappers written using `smbus2` directly: `scripts/mmwave_sensor.py`, `scripts/voice_sensor.py`.
+
+---
+
+## IMX219 Camera (Pi Camera v2, 8MP)
+
+**Hardware**
+- CSI connector on Jetson Nano carrier board
+- Device: `/dev/video0` via `tegra-video` driver (`vi-output, imx219 8-0010`)
+- Sensor modes: 3264×2464@21fps, 3264×1848@28fps, 1920×1080@30fps, 1640×1232@30fps, 1280×720@60fps, 1280×720@120fps
+- Adjustable gain (16–170) and exposure (13–683709 µs)
+
+**Capture pipeline (gstreamer)**
+```bash
+# Single frame, auto-exposure (may be dark — AE needs ~10 frames to settle)
+gst-launch-1.0 nvarguscamerasrc num-buffers=1 sensor-id=0 \
+  ! 'video/x-raw(memory:NVMM),width=1280,height=720,framerate=21/1' \
+  ! nvjpegenc ! filesink location=/tmp/robody_cam.jpg
+
+# Better: capture 30 frames, keep the last (AE converged)
+gst-launch-1.0 nvarguscamerasrc num-buffers=30 sensor-id=0 \
+  ! 'video/x-raw(memory:NVMM),width=1280,height=720,framerate=21/1' \
+  ! nvjpegenc ! multifilesink location=/tmp/robody_cam_%02d.jpg
+
+# Manual exposure (bright indoor):
+gst-launch-1.0 nvarguscamerasrc num-buffers=30 sensor-id=0 \
+  ispdigitalgainrange='4 4' gainrange='8 8' \
+  exposuretimerange='33000000 33000000' \
+  ! 'video/x-raw(memory:NVMM),width=1280,height=720,framerate=21/1' \
+  ! nvjpegenc ! multifilesink location=/tmp/robody_cam_%02d.jpg
+```
+
+**Note:** `nvgstcapture-1.0 --automate` fails with "Capture Pipeline creation failed" on this JetPack. Use `gst-launch-1.0` directly instead.
+
+**Status:** `✅ Working (March 29, 2026)`
 
 ---
 

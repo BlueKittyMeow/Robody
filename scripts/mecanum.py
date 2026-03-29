@@ -13,9 +13,9 @@ Coordinate frame (ROS convention):
 Positive omega = counter-clockwise (CCW) rotation from above.
 
 Wheel layout (top-down view):
-    FL(M1) ── FR(M2)
+    FL(M2) ── FR(M4)
        |           |
-    RL(M3) ── RR(M4)
+    RL(M1) ── RR(M3)
 
 Mecanum roller angles:
     FL: rollers at +45°  (/)
@@ -63,12 +63,12 @@ LX = WHEEL_BASE_M  / 2.0   # half wheelbase
 LY = TRACK_WIDTH_M / 2.0   # half track width
 L  = LX + LY               # sum used in omega mixing
 
-# Motor index → physical position
-# Adjust if wiring differs from the assumed layout
-MOTOR_FL = 1   # Motor HAT M1 → Front Left
-MOTOR_FR = 2   # Motor HAT M2 → Front Right
-MOTOR_RL = 3   # Motor HAT M3 → Rear Left
-MOTOR_RR = 4   # Motor HAT M4 → Rear Right
+# Motor index → physical position (verified March 29, 2026)
+# All four spin forward with positive throttle — no inversions needed
+MOTOR_FL = 2   # Motor HAT M2 → Front Left
+MOTOR_FR = 4   # Motor HAT M4 → Front Right
+MOTOR_RL = 1   # Motor HAT M1 → Rear Left
+MOTOR_RR = 3   # Motor HAT M3 → Rear Right
 
 # Safety: max throttle allowed (0.0–1.0). Reduce to slow-walk during testing.
 MAX_THROTTLE = 1.0
@@ -88,10 +88,10 @@ class MecanumDrive:
     def __init__(self, i2c_address=0x60, max_throttle=None):
         self.kit = MotorKit(address=i2c_address)
         self._motors = {
-            MOTOR_FL: self.kit.motor1,
-            MOTOR_FR: self.kit.motor2,
-            MOTOR_RL: self.kit.motor3,
-            MOTOR_RR: self.kit.motor4,
+            MOTOR_FL: self.kit.motor2,
+            MOTOR_FR: self.kit.motor4,
+            MOTOR_RL: self.kit.motor1,
+            MOTOR_RR: self.kit.motor3,
         }
         self.max_throttle = max_throttle or MAX_THROTTLE
         self._last_cmd = (0.0, 0.0, 0.0)

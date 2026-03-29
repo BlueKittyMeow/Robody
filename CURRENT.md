@@ -1,11 +1,34 @@
 # Current Status & Next Steps
-*Updated: March 28, 2026 (session 3)*
+*Updated: March 29, 2026 (session 4)*
 
 ---
 
 ## Where We Are
 
-Robody is ONLINE. Jetson Nano booted, networked, and SSH-accessible from MysteryOfGlass.
+Robody is ONLINE with full sensor suite. Jetson Nano booted, networked, SSH-accessible, all four I2C devices communicating, camera operational.
+
+### Completed (March 29, session 4)
+
+- **All I2C sensors connected and communicating** — DFRobot Gravity I2C Hub (DFR0759) wired to J41 pins 1(3.3V)/3(SDA)/5(SCL)/6(GND). Full bus verified:
+  - 0x17 EP-0245 UPS ✓
+  - 0x2A C4001 mmWave Presence ✓
+  - 0x60 Motor HAT ✓
+  - 0x64 DF2301Q Voice Recognition ✓
+- **C4001 DIP switch discovery** — Sensor shipped with protocol DIP set to UART (not I2C). This caused phantom addresses across the entire bus and Motor HAT unreachability. Second DIP selects address (0x2A/0x2B). Both now correctly set. Power cycle required after DIP change.
+- **C4001 I2C protocol requirement** — Bare `read_byte()` or `i2cdetect -r` locks the bus permanently. Sensor requires register-addressed block reads: `read_i2c_block_data(0x2A, register, length)`. Safety wrapper deployed.
+- **I2C bus safety tools deployed**:
+  - `/usr/local/bin/safe-i2cdetect` — blocks bare scans of bus 1, passes through other buses
+  - `/usr/local/bin/safe-i2c-scan` — Python utility that safely probes all known devices
+  - `~/.bashrc` alias: `i2cdetect → safe-i2cdetect`
+- **mmWave live data confirmed** — Presence mode detects humans (breathing/micro-motion). Speed mode returns range (tested 135–283cm), speed (0.17–0.22 m/s fidgeting detected), and signal energy. Possible cat detections at ~283cm.
+- **IMX219 camera operational** — Pi Camera v2 at `/dev/video0` via tegra-video. Capture via `gst-launch-1.0 nvarguscamerasrc`. Adjustable gain (16–170) and exposure (13–683709µs). Auto-exposure needs ~10+ frames to converge. `nvgstcapture` doesn't work — use gstreamer directly.
+- **Bus recovery procedure documented** — Tegra I2C controller unbind/rebind via sysfs recovers bus after lockup (if offending device removed). Full reboot otherwise.
+- **Motor mapping verified** — Physical wheel test confirmed:
+  - M1 = Rear Left, M2 = Front Left, M3 = Rear Right, M4 = Front Right
+  - All spin forward with positive throttle (no inversions)
+  - Updated `scripts/mecanum.py`, `ros/robody_drive/scripts/mecanum.py`, `scripts/motor_test.py`
+- **Voice sensor volume** — Was at 0 (silent!). Set to 7 (max). Wake greeting confirmed audible.
+- **Camera exposure** — IMX219 auto-exposure converges after ~10+ frames. Manual exposure params: `ispdigitalgainrange`, `gainrange`, `exposuretimerange` on `nvarguscamerasrc`.
 
 ### Completed (March 28, session 3)
 
@@ -61,16 +84,19 @@ Robody is ONLINE. Jetson Nano booted, networked, and SSH-accessible from Mystery
 ### Hardware Stack (Assembled)
 
 ```
-┌─────────────────────────┐
+                  ┌── IMX219 Camera (front) ──── CSI port 0
+                  │
+┌─────────────────┴───────┐
 │   Adafruit Motor HAT    │  ← TB6612, I2C @ 0x60, 4 channels
 │   (GPIO header, top)    │     Motor power: 5V rail jumper SOLDERED ✓
 ├─────────────────────────┤
 │   Jetson Nano 4GB       │  ← JetPack 4.6.1, Ubuntu 18.04, Python 3.6
 │   (GPIO header, middle) │     192.168.1.166 (WiFi) / .165 (eth)
-├─────────────────────────┤
-│   52Pi EP-0245 UPS v6   │  ← 6× 18650 cells, I2C fuel gauge @ 0x17
-│   (pogo pins, bottom)   │     USB-C charging, passthrough capable
-├─────────────────────────┤
+├─────────────────┬───────┤
+│   52Pi EP-0245  │ J41 pins 1/3/5/6 → DFR0759 Gravity I2C Hub
+│   UPS v6        │   ├── C4001 mmWave Presence  @ 0x2A (front-right)
+│   I2C @ 0x17    │   └── DF2301Q Voice Recog    @ 0x64
+├─────────────────┴───────┤
 │   Mecanum Wheel Chassis │  ← Omnidirectional: lateral, diagonal, spin
 │   (4 motors, worm gear) │     Modified from SparkFun JetBot base
 └─────────────────────────┘
@@ -98,14 +124,12 @@ Robody is ONLINE. Jetson Nano booted, networked, and SSH-accessible from Mystery
 5. ~~On-boot motor service~~ — Done (`robody-motor.service` systemd unit, enabled ✓)
 6. ~~UPS software shutdown~~ — Done (`scripts/ups_poweroff.py`, tested ✓)
 7. ~~Sensor wrappers~~ — Done (`scripts/mmwave_sensor.py`, `scripts/voice_sensor.py`)
-8. **Wire sensors** (Lara) — Solder 4-pin male header to Motor HAT pass-through (pins 1/3/5/6 = 3.3V/SDA/SCL/GND), connect DFR0759 hub and sensors. Then test wrappers.
-9. **Board revision check** — Run when Nano stable:
-   ```bash
-   cat /proc/device-tree/model
-   ls /dev/video*   # B01 has /dev/video0 + /dev/video1
-   ```
+8. ~~Wire sensors~~ — Done (March 29). Gravity hub connected via female DuPont to J41 pins 1/3/5/6. Both sensors communicating.
+9. ~~Camera verified~~ — Done (March 29). IMX219 at `/dev/video0`, captures via gstreamer.
 10. **Deploy Robody heartbeat** — Get the core SENSE→NOTICE→THINK→DECIDE→LOG loop running on the Nano
 11. **System updates** — `apt upgrade` on Nano (was attempted earlier but timed out)
+12. **Rear camera** — Second camera cable arriving tomorrow; connect to second CSI port
+13. **mmWave calibration** — Presence mode range values may be inaccurate (reported 283cm when physically closer). Speed mode gives better range data. Investigate detection range settings and calibration.
 
 ---
 
@@ -118,8 +142,8 @@ ssh bluekitty@192.168.1.166
 # Check motor HAT
 python3 -c "from adafruit_motorkit import MotorKit; kit = MotorKit(); print('OK')"
 
-# Check I2C devices
-sudo i2cdetect -y -r 1
+# Check I2C devices — SAFE method (NEVER use bare i2cdetect on bus 1!)
+safe-i2c-scan
 
 # ROS
 source /opt/ros/melodic/setup.bash
@@ -177,6 +201,9 @@ Charging: USB-C magnetic breakaway → EP-0245 → cells
 - **Adafruit library patches**: Two pip-installed library files needed patching for Python 3.6 (see Completed section above). These will be lost on `pip upgrade` of the affected packages — re-apply if MotorKit breaks after upgrade.
 - **Serial console**: USB gadget mode (ttyACM0) only works when barrel jack power is used with J48 jumpered. With GPIO power from UPS, micro-USB does NOT expose serial. Use SSH for all remote access.
 - **Disk space**: 15GB free on 32GB card. Monitor carefully when installing additional packages.
+- **C4001 mmWave I2C protocol**: NEVER use bare `read_byte()`, `i2cdetect -r`, or any address-only I2C transaction with the C4001. It holds SDA low and locks the entire bus. Always use `read_i2c_block_data(0x2A, register, length)`. Safety wrapper `safe-i2cdetect` is aliased in `~/.bashrc`. Bus recovery: unbind/rebind `7000c400.i2c` via sysfs, or reboot.
+- **C4001 DIP switches**: Ships with protocol DIP set to UART. Must be flipped to I2C. Power cycle after any DIP change. Second DIP selects address 0x2A/0x2B.
+- **Camera auto-exposure**: IMX219 via `nvarguscamerasrc` needs ~10+ frames for auto-exposure to converge. Single-frame captures will be very dark. Capture 30 frames and use the last one, or set manual exposure/gain.
 
 ---
 

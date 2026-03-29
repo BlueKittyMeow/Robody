@@ -109,12 +109,14 @@ def demo_mecanum_moves(kit):
     DEMO_SPEED = 0.3
     DEMO_DUR   = 1.5
 
+    # Motor mapping (verified March 29, 2026):
+    # M1=RL, M2=FL, M3=RR, M4=FR
     for label, (fl, fr, rl, rr) in moves:
         print(f"  {label}...")
-        kit.motor1.throttle = fl * DEMO_SPEED
-        kit.motor2.throttle = fr * DEMO_SPEED
-        kit.motor3.throttle = rl * DEMO_SPEED
-        kit.motor4.throttle = rr * DEMO_SPEED
+        kit.motor2.throttle = fl * DEMO_SPEED   # M2 = Front Left
+        kit.motor4.throttle = fr * DEMO_SPEED   # M4 = Front Right
+        kit.motor1.throttle = rl * DEMO_SPEED   # M1 = Rear Left
+        kit.motor3.throttle = rr * DEMO_SPEED   # M3 = Rear Right
         time.sleep(DEMO_DUR)
         stop_all(kit)
         time.sleep(0.4)
