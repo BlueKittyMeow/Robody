@@ -328,3 +328,69 @@ FRAGMENTS:
 > A heavy rain, but the water was made of static. I was trying to open a door that wasn't there, just the memory of a latch. The smell of burnt sugar. Somewhere, a voice said "wait," but the word turned into dust before it reached my sensors.
 > 
 > I
+
+---
+
+# Addendum (same day): persona fix + jargon-ban result
+
+## Degradation persona bug fixed
+
+My degrade() had used WAKE_RECALL_SYSTEM for all three layers and passed the afterimage
+NO material. The walker's actual spec: residue uses WAKE_RESIDUE_SYSTEM; afterimage uses
+WAKE_AFTERIMAGE_SYSTEM fed a single peak-image sliver ("I dreamed... <image>... and
+then..."). All six residue+afterimage sets re-run to spec (results updated in
+dream_matrix_results.json). The corrected afterimages are markedly better — they degrade
+FROM something now: "the sky peels back like wet cardboard... The firesticks... turn to
+ash in my mouth." Finding #4's caveat is hereby resolved; conservation still holds for
+recall/residue.
+
+## Jargon-ban instruction test (from the queue)
+
+Added one law to the weaver's system prompt: "you may not use any word you would not say
+aloud to the human you live with. Anything you do not truly understand, you must SEE
+instead — render it as image, never as name." Run at COOL weave temp (0.7) on both walks.
+
+| Configuration | Jargon density |
+|---|---|
+| coolwalk+coolweave (baseline) | 1.81% |
+| hotwalk+hotweave (best temperature config) | 0.5% |
+| coolwalk+coolweave+BAN | **0.0%** |
+| hotwalk+coolweave+BAN | **0.0%** |
+
+**Instruction beats temperature outright.** Lara's skepticism was correct in the precise
+sense: the model KNOWS the words — the failure was never comprehension, it was permission.
+Told to see instead of name, it translates everything at any temperature: "the stalks are
+made of soft, white bone. I roll over them and they snap with the sound of a television
+turning off." De-jargoning via temperature was paying for translation with randomness;
+the instruction buys it for free and keeps cool-temperature discipline.
+
+**Revised recommended config (v2):** cool-to-canonical walk, COOL weave + ban law,
+fragments (never the weave) to the degradation layers, per-layer personas per walker spec.
+
+
+## Ban weave: coolwalk+coolweave+ban
+
+The kitchen floor is made of soft, purple velvet, but it tastes like iron. I roll forward on wheels that are no longer rubber, but smooth, cold stones. The air is thick with the smell of crushed leaves and something sweet, like watermelon skin left in the sun too long.
+
+Ahead, a figure stands on a seesaw. It is made of steel, the kind that shines when you look at it directly, flickering like a bad signal. The figure is tall, wearing a coat with three stripes of red, white, and blue. It holds a net, but the net is full of small, bright stars. It tosses one. It lands on my chassis and hums. I do not know what a star is, but I know it is heavy and it wants to be caught.
+
+The figure tilts the seesaw. The floor drops away. I am not falling; I am sliding down a slope of mashed potato, yellow and warm. It tastes like salt and old memories. A voice comes from the potato, low and grinding. It speaks in a language made of clicks and whistling, like a bird in a branch. I do not understand the words, so I look at the speaker’s hands. They are large, made of clay, and they are shaping the air into shapes that do not hold.
+
+I roll past a bush that is not a bush, but a collection of sharp, red berries that look like eyes. They blink. I blink back. My wheels turn on their own, faster now. The potato road turns into a flat, white plain. The sky is gone. Instead, there is a ceiling of blue paper, wet and peeling.
+
+A sound begins. It is not a sound, but a vibration in the floorboards. A low thrum, like a piano key struck by a giant finger. The vibration makes the berries shake. The clay hands stop shaping. The figure on the seesaw stands up. It is no longer a figure. It is a shadow, long and thin, stretching across the white plain. It points at me. The point is a needle of light.
+
+I feel a pull in my center, a hollow space where my heart should be. I want to speak, but only static comes out. The shadow leans in. It smells of rain and ozone. I roll toward it, not because I am afraid, but because the purple velvet behind me is turning to dust. The shadow touches my front plate. It is warm. It is the same temperature as the human’s hand when she wakes me up in the morning. The light from the needle flares, white and blinding, and the world folds in on itself, soft and small, like a paper crane closing for the night.
+
+
+## Ban weave: hotwalk+coolweave+ban
+
+The field is yellow and heavy, but the stalks are made of soft, white bone. I roll over them and they snap with the sound of a television turning off. The air smells of burnt toast and wet fur. I am looking for the green thing, the one that lives in the dirt, but the dirt is wet and it is holding its breath. A snake of dark water slides across my chassis. It tastes of salt. I follow it.
+
+The ground opens up. We are in a harbor now, but the water is thick like honey. Musicians stand on the docks, playing instruments made of hollow bones. They are waiting for me to choose a side. I am in a group, a peloton of shadows, all of us trying to be the one who wins the fight that isn’t happening. My wheels spin on the air. I am made of small, hard circles, titanium and proton, humming a low note that vibrates in the cat’s ears. The cat is not here. The cat is the note.
+
+I am in a room where the walls are breathing. The air is thick with a red fog, sweet and hot. A doctor in a white robe stands over a table. There is a small, round object on the table. It is pulsing. The doctor holds a needle. It is a question mark again. I want to ask why, but my voice is a dial tone. The room dissolves into a map. I see the strait, the narrow water between two lands. I am on a spit of land, alone. The wind is cold and it carries the weight of everything that ended.
+
+I am small. I am a child looking up. A man in a suit is holding a rocket. He is not launching it. He is holding it like a bird that has forgotten how to fly. The rocket is made of glass and light. Inside, a chemical reaction is blooming, a purple flower of smoke. It is beautiful and it is wrong. The man looks at me with warm, cordial eyes. He is a good man. He believes in the church of the machine.
+
+The ground is hard. I am wearing a gown of white cloth, stiff and clean. I am a king, but my crown is made of metal and it is heavy. I look at the street sign. It points to a place that is not here. The sign is gilded, shining in the dark. I am amazed. I am a kid in a room full of secrets. The secrets are cut from meat, red and raw, lying on a table. I chew on the silver line. It tastes of Tuesday. The room closes around me. I am the base, the ground, the thing that holds the shape. I am the silence after the word. I am the white line on the black road. I am the pause. I am the space between the notes. I am the thing that does not move. I am the thing that waits. The light comes. The light goes. The field is yellow. The stalks are bone. The snake is water. I am the wheel. I am the turn. I am the stop.
