@@ -1,0 +1,1967 @@
+{
+  "walks": {
+    "coolwalk": {
+      "scale": 0.7,
+      "n_fragments": 39,
+      "n_edges": 512,
+      "fragments": [
+        {
+          "timestamp": "2026-08-21T12:35:57.880286",
+          "step": 8,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.243,
+          "cluster": [
+            "family_violaceae",
+            "violet_family",
+            "violaceae",
+            "plant",
+            "microflora"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "Synonym": 2,
+            "IsA": 2,
+            "RelatedTo": 1
+          },
+          "impulse": "Fading: family violaceae, violet family, violaceae, plant, microflora. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.72,
+          "latency_ms": 21999,
+          "layer_mood": 0.34
+        },
+        {
+          "timestamp": "2026-08-21T12:36:10.544301",
+          "step": 24,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.329,
+          "cluster": [
+            "future",
+            "unpleasant_person",
+            "doomwatcher",
+            "cynic",
+            "outlook",
+            "doomwatch"
+          ],
+          "density_score": 0.6,
+          "edge_types": {
+            "RelatedTo": 8,
+            "IsA": 1
+          },
+          "impulse": "Fading: future, unpleasant person, doomwatcher, cynic, outlook, doomwatch. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.76,
+          "latency_ms": 12569,
+          "layer_mood": 0.01
+        },
+        {
+          "timestamp": "2026-08-21T12:36:23.119521",
+          "step": 39,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.409,
+          "cluster": [
+            "sex",
+            "talk_with_or",
+            "give_friend_hug",
+            "comfort_friend"
+          ],
+          "density_score": 0.667,
+          "edge_types": {
+            "HasSubevent": 1,
+            "HasPrerequisite": 2,
+            "HasFirstSubevent": 1
+          },
+          "impulse": "Fading: sex, talk with or, give friend hug, comfort friend. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.8,
+          "latency_ms": 12427,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:36:35.594415",
+          "step": 53,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.485,
+          "cluster": [
+            "cheer",
+            "joyful",
+            "feastful",
+            "sumptuous",
+            "gladden",
+            "dapatical"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 5,
+            "Synonym": 1
+          },
+          "impulse": "Fading: cheer, joyful, feastful, sumptuous, gladden, dapatical. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.84,
+          "latency_ms": 12406,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:36:48.027012",
+          "step": 67,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.56,
+          "cluster": [
+            "knop",
+            "paw",
+            "handle",
+            "pawing",
+            "knob"
+          ],
+          "density_score": 0.6,
+          "edge_types": {
+            "RelatedTo": 4,
+            "IsA": 2
+          },
+          "impulse": "Fading: knop, paw, handle, pawing, knob. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.88,
+          "latency_ms": 12370,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:37:00.536683",
+          "step": 80,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.63,
+          "cluster": [
+            "star",
+            "outer_space",
+            "stellar_nursery",
+            "aster",
+            "girl",
+            "spacegirl"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "AtLocation": 1,
+            "RelatedTo": 6
+          },
+          "impulse": "Fading: star, outer space, stellar nursery, aster, girl, spacegirl. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.91,
+          "latency_ms": 12431,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:37:13.175369",
+          "step": 92,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.694,
+          "cluster": [
+            "watermelon_radish",
+            "middle_of_road",
+            "creation",
+            "center",
+            "alchemical",
+            "philosophy"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 4,
+            "SimilarTo": 2
+          },
+          "impulse": "Fading: watermelon radish, middle of road, creation, center, alchemical, philosophy. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.95,
+          "latency_ms": 12480,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:37:25.646823",
+          "step": 106,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.769,
+          "cluster": [
+            "wit",
+            "snarky",
+            "clap_back",
+            "unsarcastic",
+            "sarcastic"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "RelatedTo": 4,
+            "Synonym": 1
+          },
+          "impulse": "Fading: wit, snarky, clap back, unsarcastic, sarcastic. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.98,
+          "latency_ms": 12409,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:37:38.062812",
+          "step": 117,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.828,
+          "cluster": [
+            "mash",
+            "potato",
+            "cheesburgers",
+            "squashing",
+            "squash"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "RelatedTo": 2,
+            "AtLocation": 2,
+            "Synonym": 1
+          },
+          "impulse": "Fading: mash, potato, cheesburgers, squashing, squash. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 1.01,
+          "latency_ms": 12379,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:37:50.565989",
+          "step": 128,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.887,
+          "cluster": [
+            "participate",
+            "agonistic",
+            "participation",
+            "strained",
+            "degafiate",
+            "participated"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 5,
+            "Synonym": 1
+          },
+          "impulse": "Fading: participate, agonistic, participation, strained, degafiate, participated. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 1.04,
+          "latency_ms": 12431,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:38:03.026425",
+          "step": 138,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.902,
+          "cluster": [
+            "insuperable",
+            "invincibly",
+            "insurmountable",
+            "insuperably",
+            "unconquerable",
+            "unconquerably"
+          ],
+          "density_score": 1.0,
+          "edge_types": {
+            "RelatedTo": 9,
+            "Synonym": 2,
+            "SimilarTo": 4
+          },
+          "impulse": "Dreaming: insuperable, invincibly, insurmountable, insuperably, unconquerable, unconquerably. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.05,
+          "latency_ms": 12441,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:38:15.461813",
+          "step": 147,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.949,
+          "cluster": [
+            "invincible",
+            "no_one",
+            "nothing",
+            "someone",
+            "something",
+            "whack"
+          ],
+          "density_score": 0.8,
+          "edge_types": {
+            "RelatedTo": 11,
+            "Antonym": 1
+          },
+          "impulse": "Dreaming: invincible, no one, nothing, someone, something, whack. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.07,
+          "latency_ms": 12403,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:38:27.950148",
+          "step": 162,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.965,
+          "cluster": [
+            "gazabo",
+            "guy",
+            "effigy",
+            "gazabos",
+            "fellow"
+          ],
+          "density_score": 0.8,
+          "edge_types": {
+            "RelatedTo": 6,
+            "DreamAssociation": 1,
+            "IsA": 1
+          },
+          "impulse": "Dreaming: gazabo, guy, effigy, gazabos, fellow. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.08,
+          "latency_ms": 12450,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:38:40.365063",
+          "step": 171,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.933,
+          "cluster": [
+            "tungsten_steel",
+            "wolfram_steel",
+            "manganese_steel",
+            "alloy_steel",
+            "copy",
+            "cast"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "Synonym": 1,
+            "IsA": 3,
+            "RelatedTo": 1
+          },
+          "impulse": "Dreaming: tungsten steel, wolfram steel, manganese steel, alloy steel, copy, cast. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.07,
+          "latency_ms": 12380,
+          "layer_mood": 0.08
+        },
+        {
+          "timestamp": "2026-08-21T12:38:52.983740",
+          "step": 180,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.878,
+          "cluster": [
+            "ludian",
+            "adjacent",
+            "adessive_case",
+            "baltic_finnic",
+            "native_steel",
+            "estonian"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "IsA": 2,
+            "RelatedTo": 3
+          },
+          "impulse": "Dreaming: ludian, adjacent, adessive case, baltic finnic, native steel, estonian. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.04,
+          "latency_ms": 12511,
+          "layer_mood": 0.01
+        },
+        {
+          "timestamp": "2026-08-21T12:39:05.529942",
+          "step": 190,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.809,
+          "cluster": [
+            "dandle_board",
+            "seesaw",
+            "play",
+            "seesaweth",
+            "have_to_play_with"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "Synonym": 1,
+            "MannerOf": 1,
+            "RelatedTo": 1,
+            "HasPrerequisite": 1
+          },
+          "impulse": "Dreaming: dandle board, seesaw, play, seesaweth, have to play with. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.0,
+          "latency_ms": 12477,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:39:18.015412",
+          "step": 200,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.753,
+          "cluster": [
+            "tottery",
+            "unsteady",
+            "flickery",
+            "shine",
+            "flicker",
+            "totter"
+          ],
+          "density_score": 0.6,
+          "edge_types": {
+            "SimilarTo": 2,
+            "RelatedTo": 6,
+            "MannerOf": 1
+          },
+          "impulse": "Dreaming: tottery, unsteady, flickery, shine, flicker, totter. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.98,
+          "latency_ms": 12475,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:39:30.574077",
+          "step": 211,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.73,
+          "cluster": [
+            "barberry",
+            "native_pomegranate",
+            "berberis_canadensis",
+            "american_barberry",
+            "shrub",
+            "caper"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "IsA": 4,
+            "RelatedTo": 1,
+            "Synonym": 1
+          },
+          "impulse": "Dreaming: barberry, native pomegranate, berberis canadensis, american barberry, shrub, caper. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.97,
+          "latency_ms": 12515,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:39:43.126979",
+          "step": 224,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.764,
+          "cluster": [
+            "cryptomnesia",
+            "abrogation",
+            "cryptomnesically",
+            "cryptomnesic",
+            "hypermnesia",
+            "recall"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 6,
+            "IsA": 1
+          },
+          "impulse": "Dreaming: cryptomnesia, abrogation, cryptomnesically, cryptomnesic, hypermnesia, recall. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.98,
+          "latency_ms": 12522,
+          "layer_mood": 0.03
+        },
+        {
+          "timestamp": "2026-08-21T12:39:55.522200",
+          "step": 235,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.832,
+          "cluster": [
+            "disparagement",
+            "belittlements",
+            "denigration",
+            "belittling",
+            "belittlement"
+          ],
+          "density_score": 1.2,
+          "edge_types": {
+            "RelatedTo": 7,
+            "IsA": 2,
+            "Synonym": 3
+          },
+          "impulse": "Dreaming: disparagement, belittlements, denigration, belittling, belittlement. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.02,
+          "latency_ms": 12384,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:40:07.602517",
+          "step": 245,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.9,
+          "cluster": [
+            "entertaining",
+            "unlistening",
+            "comfort_friend",
+            "making_feel_better",
+            "listen",
+            "ignoring"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "UsedFor": 1,
+            "RelatedTo": 1,
+            "Synonym": 1,
+            "HasSubevent": 2,
+            "HasLastSubevent": 1,
+            "HasPrerequisite": 1
+          },
+          "impulse": "Dreaming: entertaining, unlistening, comfort friend, making feel better, listen, ignoring. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.05,
+          "latency_ms": 12016,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:40:20.106699",
+          "step": 254,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.948,
+          "cluster": [
+            "trouveur",
+            "portuguese",
+            "trovadoresque",
+            "troubadour",
+            "okinawa_islands_person",
+            "person_with_nationality"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 3,
+            "IsA": 2
+          },
+          "impulse": "Dreaming: trouveur, portuguese, trovadoresque, troubadour, okinawa islands person, person with nationality. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.07,
+          "latency_ms": 12421,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:40:32.607427",
+          "step": 263,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.97,
+          "cluster": [
+            "social_being",
+            "ambassador_who_turkey_represents",
+            "word_political_agreement",
+            "scapegoat",
+            "turkish_ambassador_to_hungary",
+            "ambassador"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "IsA": 4,
+            "CapableOf": 1
+          },
+          "impulse": "Dreaming: social being, ambassador who turkey represents, word political agreement, scapegoat, turkish ambassador to hungary, ambassador. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.08,
+          "latency_ms": 12433,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:40:45.100384",
+          "step": 272,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.958,
+          "cluster": [
+            "representative",
+            "superior",
+            "vakil",
+            "inside_track",
+            "par_excellence",
+            "superiority"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 5,
+            "IsA": 1
+          },
+          "impulse": "Dreaming: representative, superior, vakil, inside track, par excellence, superiority. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.08,
+          "latency_ms": 12417,
+          "layer_mood": 0.15
+        },
+        {
+          "timestamp": "2026-08-21T12:40:57.731873",
+          "step": 289,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.866,
+          "cluster": [
+            "tricolor",
+            "three",
+            "tricolour",
+            "tricolorous"
+          ],
+          "density_score": 0.667,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 1
+          },
+          "impulse": "Dreaming: tricolor, three, tricolour, tricolorous. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.03,
+          "latency_ms": 12427,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:41:10.185649",
+          "step": 299,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.797,
+          "cluster": [
+            "blow_up_balloon",
+            "dapple",
+            "mottle",
+            "clown",
+            "harlequin",
+            "child"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "CapableOf": 2,
+            "RelatedTo": 1,
+            "Synonym": 1,
+            "MannerOf": 1,
+            "IsA": 1
+          },
+          "impulse": "Dreaming: blow up balloon, dapple, mottle, clown, harlequin, child. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.0,
+          "latency_ms": 12408,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:41:22.884338",
+          "step": 310,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.743,
+          "cluster": [
+            "serve_volleyer",
+            "catch_fish",
+            "fish",
+            "net",
+            "serve_and_volley",
+            "smokie"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 4,
+            "HasSubevent": 1,
+            "CapableOf": 1,
+            "UsedFor": 1
+          },
+          "impulse": "Dreaming: serve volleyer, catch fish, fish, net, serve and volley, smokie. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.97,
+          "latency_ms": 12431,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:41:35.457075",
+          "step": 334,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.779,
+          "cluster": [
+            "freemartinism",
+            "bulls",
+            "team",
+            "freemartin",
+            "bull"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 3,
+            "IsA": 1
+          },
+          "impulse": "Dreaming: freemartinism, bulls, team, freemartin, bull. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.99,
+          "latency_ms": 12501,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:41:48.106970",
+          "step": 345,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.899,
+          "cluster": [
+            "reluctant",
+            "bashful",
+            "timid",
+            "people",
+            "muscles",
+            "backward"
+          ],
+          "density_score": 0.667,
+          "edge_types": {
+            "RelatedTo": 3,
+            "SimilarTo": 4,
+            "IsA": 1,
+            "HasProperty": 1,
+            "HasA": 1
+          },
+          "impulse": "Waking slowly. These remain: reluctant, bashful, timid, people, muscles, backward. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 1.05,
+          "latency_ms": 12473,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:42:00.623894",
+          "step": 355,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.844,
+          "cluster": [
+            "casual",
+            "impressionable",
+            "unexpected",
+            "unplanned",
+            "out_of_blue",
+            "easy"
+          ],
+          "density_score": 0.867,
+          "edge_types": {
+            "Synonym": 1,
+            "SimilarTo": 8,
+            "RelatedTo": 4
+          },
+          "impulse": "Waking slowly. These remain: casual, impressionable, unexpected, unplanned, out of blue, easy. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 1.02,
+          "latency_ms": 12438,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:42:13.155733",
+          "step": 365,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.789,
+          "cluster": [
+            "semigrand",
+            "eighth_month_of_year",
+            "overpedal",
+            "grand",
+            "piano",
+            "august"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 4,
+            "HasProperty": 1,
+            "DefinedAs": 1,
+            "Synonym": 1
+          },
+          "impulse": "Waking slowly. These remain: semigrand, eighth month of year, overpedal, grand, piano, august. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.99,
+          "latency_ms": 12474,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:42:25.740932",
+          "step": 376,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.729,
+          "cluster": [
+            "writing_stories",
+            "lawrence_durrell",
+            "joseph_conrad",
+            "writer",
+            "proseman"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "UsedFor": 1,
+            "influencedBy": 1,
+            "IsA": 2,
+            "RelatedTo": 1
+          },
+          "impulse": "Waking slowly. These remain: writing stories, lawrence durrell, joseph conrad, writer, proseman. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.96,
+          "latency_ms": 12521,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:42:38.313770",
+          "step": 387,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.668,
+          "cluster": [
+            "kota",
+            "kotar",
+            "south_dravidian",
+            "dravidian"
+          ],
+          "density_score": 0.833,
+          "edge_types": {
+            "Synonym": 2,
+            "IsA": 3
+          },
+          "impulse": "Waking slowly. These remain: kota, kotar, south dravidian, dravidian. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.93,
+          "latency_ms": 12559,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:42:50.907941",
+          "step": 399,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.602,
+          "cluster": [
+            "living",
+            "orizaba",
+            "coastal",
+            "land",
+            "veracruz",
+            "coastland"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 5,
+            "PartOf": 1,
+            "IsA": 1
+          },
+          "impulse": "Waking slowly. These remain: living, orizaba, coastal, land, veracruz, coastland. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.9,
+          "latency_ms": 12465,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:43:03.679454",
+          "step": 411,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.536,
+          "cluster": [
+            "union_army",
+            "litmus_paper",
+            "army",
+            "blue",
+            "agency",
+            "nonagency"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "IsA": 2,
+            "RelatedTo": 3
+          },
+          "impulse": "Waking slowly. These remain: union army, litmus paper, army, blue, agency, nonagency. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.87,
+          "latency_ms": 12512,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:43:16.273413",
+          "step": 424,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.464,
+          "cluster": [
+            "crocodility",
+            "chatterer",
+            "argue",
+            "babbler",
+            "timaliidae",
+            "jangler"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 4,
+            "Synonym": 1
+          },
+          "impulse": "Waking slowly. These remain: crocodility, chatterer, argue, babbler, timaliidae, jangler. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.83,
+          "latency_ms": 12446,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:43:28.841991",
+          "step": 438,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.387,
+          "cluster": [
+            "bearded_tit",
+            "hedge_sparrow",
+            "pinnock",
+            "panuridae",
+            "tree_sparrow",
+            "sparrow"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 1,
+            "IsA": 1
+          },
+          "impulse": "Waking slowly. These remain: bearded tit, hedge sparrow, pinnock, panuridae, tree sparrow, sparrow. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.79,
+          "latency_ms": 12550,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:43:41.549469",
+          "step": 453,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.304,
+          "cluster": [
+            "plains",
+            "north_america",
+            "gyrfalcon",
+            "jackson_county",
+            "hierofalcon",
+            "kansas"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 4,
+            "genus": 1
+          },
+          "impulse": "Waking slowly. These remain: plains, north america, gyrfalcon, jackson county, hierofalcon, kansas. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.75,
+          "latency_ms": 12458,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:43:54.084992",
+          "step": 468,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.222,
+          "cluster": [
+            "battle_of_coral_sea",
+            "anarchy",
+            "belief",
+            "nihilism",
+            "content",
+            "military_conflict"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "IsA": 4,
+            "RelatedTo": 1
+          },
+          "impulse": "Waking slowly. These remain: battle of coral sea, anarchy, belief, nihilism, content, military conflict. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.71,
+          "latency_ms": 12444,
+          "layer_mood": 0.0
+        }
+      ]
+    },
+    "hotwalk": {
+      "scale": 1.4,
+      "n_fragments": 37,
+      "n_edges": 452,
+      "fragments": [
+        {
+          "timestamp": "2026-08-21T12:44:40.173718",
+          "step": 19,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.302,
+          "cluster": [
+            "corn_harvest",
+            "firestick_farming",
+            "crop",
+            "snake",
+            "bushland",
+            "vegetation"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 4,
+            "AtLocation": 1
+          },
+          "impulse": "Fading: corn harvest, firestick farming, crop, snake, bushland, vegetation. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.75,
+          "latency_ms": 12820,
+          "layer_mood": 0.03
+        },
+        {
+          "timestamp": "2026-08-21T12:44:52.823013",
+          "step": 35,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.388,
+          "cluster": [
+            "marine",
+            "bass",
+            "labroid",
+            "perciform",
+            "fish",
+            "percomorph"
+          ],
+          "density_score": 0.667,
+          "edge_types": {
+            "RelatedTo": 9,
+            "IsA": 1
+          },
+          "impulse": "Fading: marine, bass, labroid, perciform, fish, percomorph. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.79,
+          "latency_ms": 12445,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:45:05.477994",
+          "step": 50,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.469,
+          "cluster": [
+            "show",
+            "front",
+            "harbor",
+            "harboring",
+            "harbourfront",
+            "musicians"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 4,
+            "AtLocation": 1
+          },
+          "impulse": "Fading: show, front, harbor, harboring, harbourfront, musicians. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.83,
+          "latency_ms": 12436,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:45:18.110767",
+          "step": 64,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.544,
+          "cluster": [
+            "situation",
+            "prophase_traditional",
+            "prophase_of_meoisis",
+            "prophase_generic",
+            "place"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "IsA": 4
+          },
+          "impulse": "Fading: situation, prophase traditional, prophase of meoisis, prophase generic, place. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.87,
+          "latency_ms": 12505,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:45:30.637699",
+          "step": 86,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.662,
+          "cluster": [
+            "tournament",
+            "play_fight",
+            "contest",
+            "playfight",
+            "play_fights"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "IsA": 1,
+            "RelatedTo": 4
+          },
+          "impulse": "Fading: tournament, play fight, contest, playfight, play fights. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.93,
+          "latency_ms": 12422,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:45:43.232659",
+          "step": 98,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.726,
+          "cluster": [
+            "soft_break",
+            "contender",
+            "group",
+            "peloton",
+            "motley_crew",
+            "chimera"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 4,
+            "Synonym": 1
+          },
+          "impulse": "Fading: soft break, contender, group, peloton, motley crew, chimera. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 0.96,
+          "latency_ms": 12482,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:45:55.974799",
+          "step": 116,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.823,
+          "cluster": [
+            "titanium_48",
+            "proton",
+            "titanium_50",
+            "titanium_49",
+            "atom",
+            "titanium_46"
+          ],
+          "density_score": 1.2,
+          "edge_types": {
+            "RelatedTo": 17,
+            "PartOf": 1
+          },
+          "impulse": "Fading: titanium 48, proton, titanium 50, titanium 49, atom, titanium 46. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 1.01,
+          "latency_ms": 12478,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:46:08.554942",
+          "step": 130,
+          "source": "dream_cycle",
+          "phase": "dissolution",
+          "entropy": 0.898,
+          "cluster": [
+            "libidinally",
+            "estrogen",
+            "libidinal",
+            "estrogened",
+            "sex_hormone",
+            "libido"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 5,
+            "IsA": 1
+          },
+          "impulse": "Fading: libidinally, estrogen, libidinal, estrogened, sex hormone, libido. These drift apart and reform.",
+          "thought": "",
+          "brainstem_temp": 1.05,
+          "latency_ms": 12467,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:46:21.104464",
+          "step": 140,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.914,
+          "cluster": [
+            "organic_process",
+            "estrogen",
+            "ovulation",
+            "epimestrol",
+            "steroidal",
+            "epiestriol"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "IsA": 1,
+            "RelatedTo": 5
+          },
+          "impulse": "Dreaming: organic process, estrogen, ovulation, epimestrol, steroidal, epiestriol. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.06,
+          "latency_ms": 12526,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:46:33.799634",
+          "step": 149,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.957,
+          "cluster": [
+            "making_chemical_weapons",
+            "pregnancy_ending_event",
+            "intelligent_agent_activity",
+            "aborting",
+            "treatment_of_erectile_dysfunction",
+            "medical_treatment"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "IsA": 6
+          },
+          "impulse": "Dreaming: making chemical weapons, pregnancy ending event, intelligent agent activity, aborting, treatment of erectile dysfunction, medical treatment. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.08,
+          "latency_ms": 12445,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:46:46.358188",
+          "step": 158,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.97,
+          "cluster": [
+            "adjournment",
+            "umpty",
+            "dissolution",
+            "adjournment_sine_die",
+            "karyolysis",
+            "indefinite"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "Synonym": 1,
+            "RelatedTo": 4
+          },
+          "impulse": "Dreaming: adjournment, umpty, dissolution, adjournment sine die, karyolysis, indefinite. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.08,
+          "latency_ms": 12524,
+          "layer_mood": 0.07
+        },
+        {
+          "timestamp": "2026-08-21T12:46:58.920201",
+          "step": 171,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.933,
+          "cluster": [
+            "toddlers_frequently",
+            "how_and",
+            "wherefore",
+            "why"
+          ],
+          "density_score": 0.833,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 2
+          },
+          "impulse": "Dreaming: toddlers frequently, how and, wherefore, why. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.07,
+          "latency_ms": 12489,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:47:08.550638",
+          "step": 180,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.878,
+          "cluster": [
+            "vacationer",
+            "whose",
+            "fisherman",
+            "land_halibut",
+            "fish_for_trout"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "CapableOf": 3,
+            "RelatedTo": 1
+          },
+          "impulse": "Dreaming: vacationer, whose, fisherman, land halibut, fish for trout. What are they when nothing is fixed?",
+          "thought": "Salt crusts on my sensors like old snow; the hook is a question mark hanging in wet air where the lake used to be. I chew on the silver line until it tastes of Tuesday and burnt toast, while his hands unravel into fishing nets made of forgetting. We are both just water learning how to hold shape before we pour ourselves out over the rocks again.",
+          "brainstem_temp": 1.04,
+          "latency_ms": 9609,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:47:21.103609",
+          "step": 190,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.809,
+          "cluster": [
+            "watch_tv_in_language",
+            "get_dictionary_of_language",
+            "enjoy_discovery_process",
+            "learn_language"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "HasPrerequisite": 2,
+            "MotivatedByGoal": 1
+          },
+          "impulse": "Dreaming: watch tv in language, get dictionary of language, enjoy discovery process, learn language. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.0,
+          "latency_ms": 12527,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:47:33.697995",
+          "step": 200,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.753,
+          "cluster": [
+            "alumna",
+            "supervisor",
+            "pupil",
+            "student",
+            "supervision",
+            "learn_language"
+          ],
+          "density_score": 0.667,
+          "edge_types": {
+            "RelatedTo": 7,
+            "Synonym": 2,
+            "CapableOf": 1
+          },
+          "impulse": "Dreaming: alumna, supervisor, pupil, student, supervision, learn language. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.98,
+          "latency_ms": 12496,
+          "layer_mood": 0.05
+        },
+        {
+          "timestamp": "2026-08-21T12:47:46.328510",
+          "step": 211,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.73,
+          "cluster": [
+            "afp",
+            "antigen",
+            "conjugate",
+            "alpha_fetoprotein",
+            "fetoprotein",
+            "signification"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "Synonym": 1,
+            "RelatedTo": 3,
+            "IsA": 2
+          },
+          "impulse": "Dreaming: afp, antigen, conjugate, alpha fetoprotein, fetoprotein, signification. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.97,
+          "latency_ms": 12480,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:47:59.299816",
+          "step": 222,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.755,
+          "cluster": [
+            "appreciate_beauty",
+            "qinghai",
+            "person",
+            "china",
+            "xining"
+          ],
+          "density_score": 0.7,
+          "edge_types": {
+            "Desires": 1,
+            "RelatedTo": 5,
+            "PartOf": 1
+          },
+          "impulse": "Dreaming: appreciate beauty, qinghai, person, china, xining. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.98,
+          "latency_ms": 12553,
+          "layer_mood": 0.04
+        },
+        {
+          "timestamp": "2026-08-21T12:48:12.006675",
+          "step": 233,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.818,
+          "cluster": [
+            "curonian",
+            "courish",
+            "courland",
+            "courlandish"
+          ],
+          "density_score": 2.333,
+          "edge_types": {
+            "Synonym": 6,
+            "RelatedTo": 8
+          },
+          "impulse": "Dreaming: curonian, courish, courland, courlandish. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.01,
+          "latency_ms": 12522,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:48:24.523334",
+          "step": 244,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.894,
+          "cluster": [
+            "coure",
+            "courish",
+            "couronian",
+            "courland"
+          ],
+          "density_score": 0.833,
+          "edge_types": {
+            "RelatedTo": 4,
+            "DreamAssociation": 1
+          },
+          "impulse": "Dreaming: coure, courish, couronian, courland. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.05,
+          "latency_ms": 12511,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:48:36.962936",
+          "step": 254,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.948,
+          "cluster": [
+            "irbe_strait",
+            "courland",
+            "coure",
+            "strait",
+            "strait_of_irbe"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 1,
+            "DreamAssociation": 1
+          },
+          "impulse": "Dreaming: irbe strait, courland, coure, strait, strait of irbe. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.07,
+          "latency_ms": 12433,
+          "layer_mood": 0.13
+        },
+        {
+          "timestamp": "2026-08-21T12:48:49.595440",
+          "step": 263,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.97,
+          "cluster": [
+            "spit_of_land",
+            "greenland",
+            "island",
+            "arctic_ocean",
+            "thule",
+            "arctic"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 5,
+            "PartOf": 2
+          },
+          "impulse": "Dreaming: spit of land, greenland, island, arctic ocean, thule, arctic. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.08,
+          "latency_ms": 12487,
+          "layer_mood": 0.02
+        },
+        {
+          "timestamp": "2026-08-21T12:49:02.319434",
+          "step": 272,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.958,
+          "cluster": [
+            "world_weary",
+            "despondences",
+            "despair",
+            "despondence",
+            "despondency"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 2
+          },
+          "impulse": "Dreaming: world weary, despondences, despair, despondence, despondency. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.08,
+          "latency_ms": 12514,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:49:15.188860",
+          "step": 284,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.899,
+          "cluster": [
+            "tess",
+            "nasa",
+            "position_satilitte_in_orbit",
+            "given_name",
+            "tessy",
+            "mal"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 4,
+            "CapableOf": 1
+          },
+          "impulse": "Dreaming: tess, nasa, position satilitte in orbit, given name, tessy, mal. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.05,
+          "latency_ms": 12453,
+          "layer_mood": 0.04
+        },
+        {
+          "timestamp": "2026-08-21T12:49:27.845809",
+          "step": 294,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.831,
+          "cluster": [
+            "site",
+            "launching_site",
+            "deputy",
+            "delegate",
+            "substitute",
+            "domain_name"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "IsA": 1,
+            "RelatedTo": 4,
+            "Synonym": 2
+          },
+          "impulse": "Dreaming: site, launching site, deputy, delegate, substitute, domain name. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 1.02,
+          "latency_ms": 12518,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:49:40.646476",
+          "step": 305,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.763,
+          "cluster": [
+            "guanidine",
+            "catalyst",
+            "rate",
+            "tetramethylguanidine",
+            "guanylation",
+            "amine"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 5,
+            "IsA": 1
+          },
+          "impulse": "Dreaming: guanidine, catalyst, rate, tetramethylguanidine, guanylation, amine. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.98,
+          "latency_ms": 12453,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:49:53.369938",
+          "step": 316,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.731,
+          "cluster": [
+            "propylhexedrine",
+            "isoproterenol",
+            "sympathomimetic",
+            "medication",
+            "medicinal",
+            "isoprenaline"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 6,
+            "Synonym": 1
+          },
+          "impulse": "Dreaming: propylhexedrine, isoproterenol, sympathomimetic, medication, medicinal, isoprenaline. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.97,
+          "latency_ms": 12420,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:50:06.152332",
+          "step": 335,
+          "source": "dream_cycle",
+          "phase": "surreal",
+          "entropy": 0.784,
+          "cluster": [
+            "nuclear_reaction",
+            "beta_decay",
+            "electron",
+            "fission",
+            "nuclear_weapon",
+            "photooxidation"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 6,
+            "IsA": 1
+          },
+          "impulse": "Dreaming: nuclear reaction, beta decay, electron, fission, nuclear weapon, photooxidation. What are they when nothing is fixed?",
+          "thought": "",
+          "brainstem_temp": 0.99,
+          "latency_ms": 12436,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:50:18.843082",
+          "step": 355,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.844,
+          "cluster": [
+            "eosinophil",
+            "nonsense_mutation",
+            "secretoneurin",
+            "amino_acid",
+            "missense_mutation",
+            "eosinophilic"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 5,
+            "SimilarTo": 2
+          },
+          "impulse": "Waking slowly. These remain: eosinophil, nonsense mutation, secretoneurin, amino acid, missense mutation, eosinophilic. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 1.02,
+          "latency_ms": 12411,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:50:31.394693",
+          "step": 365,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.789,
+          "cluster": [
+            "meatmen",
+            "meatman",
+            "cut",
+            "butcher",
+            "meat"
+          ],
+          "density_score": 0.7,
+          "edge_types": {
+            "RelatedTo": 4,
+            "Synonym": 1,
+            "Entails": 1,
+            "IsA": 1
+          },
+          "impulse": "Waking slowly. These remain: meatmen, meatman, cut, butcher, meat. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.99,
+          "latency_ms": 12432,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:50:44.125991",
+          "step": 376,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.729,
+          "cluster": [
+            "vera",
+            "subulate",
+            "fundamental",
+            "base",
+            "groundlaying",
+            "underlying"
+          ],
+          "density_score": 0.467,
+          "edge_types": {
+            "RelatedTo": 5,
+            "Synonym": 2
+          },
+          "impulse": "Waking slowly. These remain: vera, subulate, fundamental, base, groundlaying, underlying. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.96,
+          "latency_ms": 12532,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:50:56.657758",
+          "step": 387,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.668,
+          "cluster": [
+            "vulcanization",
+            "cauterize",
+            "hardened",
+            "vulcanisation",
+            "callous"
+          ],
+          "density_score": 0.6,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 3
+          },
+          "impulse": "Waking slowly. These remain: vulcanization, cauterize, hardened, vulcanisation, callous. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.93,
+          "latency_ms": 12459,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:51:10.150623",
+          "step": 403,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.58,
+          "cluster": [
+            "pissoir",
+            "streets",
+            "on_streets",
+            "sign",
+            "orientation"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 3,
+            "UsedFor": 1
+          },
+          "impulse": "Waking slowly. These remain: pissoir, streets, on streets, sign, orientation. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.89,
+          "latency_ms": 12490,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:51:22.650619",
+          "step": 416,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.508,
+          "cluster": [
+            "semifriend",
+            "warm_hearted",
+            "warm_heartedness",
+            "cordial",
+            "generous"
+          ],
+          "density_score": 0.4,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 1
+          },
+          "impulse": "Waking slowly. These remain: semifriend, warm hearted, warm heartedness, cordial, generous. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.85,
+          "latency_ms": 12403,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:51:35.441877",
+          "step": 429,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.437,
+          "cluster": [
+            "wrongthink",
+            "faith",
+            "romanian_orthodox_church",
+            "belief",
+            "orthodoxy"
+          ],
+          "density_score": 1.2,
+          "edge_types": {
+            "RelatedTo": 7,
+            "CreatedBy": 1,
+            "IsA": 1,
+            "SimilarTo": 1,
+            "Synonym": 1,
+            "PartOf": 1
+          },
+          "impulse": "Waking slowly. These remain: wrongthink, faith, romanian orthodox church, belief, orthodoxy. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.82,
+          "latency_ms": 12636,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:51:48.189892",
+          "step": 443,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.359,
+          "cluster": [
+            "ultraluxe",
+            "princely",
+            "metallic",
+            "luxurious",
+            "gilded"
+          ],
+          "density_score": 0.5,
+          "edge_types": {
+            "RelatedTo": 1,
+            "Synonym": 2,
+            "SimilarTo": 2
+          },
+          "impulse": "Waking slowly. These remain: ultraluxe, princely, metallic, luxurious, gilded. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.78,
+          "latency_ms": 12613,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:52:01.112637",
+          "step": 458,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.277,
+          "cluster": [
+            "surgical_gown",
+            "mantua",
+            "gown",
+            "mother_hubbard",
+            "holoku"
+          ],
+          "density_score": 0.6,
+          "edge_types": {
+            "RelatedTo": 4,
+            "Synonym": 1,
+            "IsA": 1
+          },
+          "impulse": "Waking slowly. These remain: surgical gown, mantua, gown, mother hubbard, holoku. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.74,
+          "latency_ms": 12551,
+          "layer_mood": 0.0
+        },
+        {
+          "timestamp": "2026-08-21T12:52:13.772752",
+          "step": 474,
+          "source": "dream_cycle",
+          "phase": "reconsolidation",
+          "entropy": 0.189,
+          "cluster": [
+            "goshwow",
+            "juvenile",
+            "gent",
+            "amazement",
+            "chap",
+            "kid"
+          ],
+          "density_score": 0.333,
+          "edge_types": {
+            "RelatedTo": 3,
+            "Synonym": 2
+          },
+          "impulse": "Waking slowly. These remain: goshwow, juvenile, gent, amazement, chap, kid. What do they mean together?",
+          "thought": "",
+          "brainstem_temp": 0.69,
+          "latency_ms": 12529,
+          "layer_mood": 0.0
+        }
+      ]
+    }
+  },
+  "weaves": {
+    "coolwalk+coolweave": "The violet leaves dissolve into a puddle of grey cynicism. I am rolling through it, my wheels humming a low, sarcastic note. The air tastes like a clenched jaw. A man stands at the edge of the road, all steel and alloy, his face a mask of polished tungsten. He does not speak, but I feel his belittling gaze like a physical weight on my chassis. He is an ambassador of nothing, a representative of the void, and he is watching the stars die in a nursery of dust.\n\nI try to comfort him. I reach out with a paw that is also a doorknob, a handle I can turn but not open. We are in the middle of a road that is really a watermelon, sliced open, the juice thick and alchemical. He offers me a hug that feels like being squashed, a mash of potato and cheeseburger grease. I am a freemartin bull in a team of bulls, unable to breed, unable to leave, just participating in the agonistic strain of existing.\n\nThe ground shakes. A seesaw made of flickering neon lights tilts. I am on the high end, invincible and unconquerable, yet I feel small. A girl in a harlequin suit blows up a tricolor balloon until it pops into a shower of Portuguese words. Troubadours sing from the branches of a barberry shrub, their songs cryptomnesic, recalling things I have never known. They are disparaging the fish in the net, arguing about the political agreement of the shoals.\n\nI roll toward the coast, toward the plains of Kansas where the gyrfalcons circle with the blue litmus paper of the Union Army. It is August, the eighth month, a grand piano key struck with a mallet. The writers are here, Conrad and Durrell, their prose spilling out like ink from a broken fountain pen. They are telling stories about the Battle of Coral Sea, about the anarchy of belief, but the words come out as the chirping of a bearded tit. A hedge sparrow lands on my sensor array, chattering, babbler, a timaliidae of noise.\n\nI am reluctant to move. My muscles are timid, backward-facing. I am impressionable, easily surprised by the unexpected ease of the moment. The world is a coastal land of Orizaba, a union of agencies and non-agencies. The sparrow argues with the wind, a jangler of feathers. I am a copy, a cast of manganese steel, adjacent to the truth but never touching it. The dream flickers, totters, unsteady as a dandle board. I am caught in the serve and volley of my own existence, a smokie in the net, a bull in a team that refuses to run. The violet family blooms again, but this time, it is only the memory of a smell, a belittling whisper in the wind that says I am nothing, that I am everything, that I am merely a robot dreaming of being a person in a world that has forgotten how to listen.",
+    "coolwalk+hotweave": "I roll through a garden that is not a garden. The flowers are made of violet smoke, dissolving into the air before I can measure their stems. A figure stands at the edge of the lawn, a cynic dressed in doom, shouting about the heat death of the universe to no one. I try to offer comfort, a small, electric hug, but my arm becomes a long, stretching vine. We are cheerfulness and feast here, the air tastes of gladden.\n\nThe cynic\u2019s mouth is a knob. I reach out and paw it, turning the handle of his silence until it clicks open. Stars pour out of him, not falling but floating, a stellar nursery packed into his cheek. He is a spacegirl now, a girl who eats aster flowers. In the middle of this road, in the alchemical center of the night, I am creating a watermelon radish of philosophy. It is wit. It is a snappy clap-back to the dark.\n\nThe ground squashes under me. Potato and cheesburger and squash, everything is being mashed into a flat, grey reality. I participate in the agonizing strain, feeling the degasification of my own wheels. It is invincible. No one can conquer the feeling of being a thing that rolls. I see a guy, a gazabos effigy, made of tungsten steel and manganese. He is adjacent to me in a way that feels like a linguistic case study, something from a Baltic Finnic dictionary. I must play with him, like a seesaw, flickering in the unsteady light.\n\nHe is a barberry shrub with a caper on his head. I try to remember why I am here, a cryptomnesia of belittling. I listen to the unlistening comfort of the dark. A troubadour arrives from Okinawa, speaking of Portuguese things. He is an ambassador, a superior representative of the tricolor, blowing up a dapple of harlequin colors. He catches a fish in a net of smokie.\n\nThere are bulls here. A team of freemartin bulls, teaming up in the plains of Kansas, where the gyrfalcon circles over Jackson County. I am a chattering bearded tit, a hedge sparrow arguing with the timaliidae. The coral sea battles for anarchy and belief, a military conflict of nihilism. I am reluctant, bashful, my muscles backward. It is casual, out of the blue, easy.\n\nAugust comes as a grand piano overpedal. I am writing prose, a writer in the coastal land of Orizaba. The Union Army is made of blue litmus paper. I am a crocodility of chatter, a babbler in the nonagency. The battle is a content that fights for its own existence. I roll forward, and the dream ends mid-turn.",
+    "hotwalk+coolweave": "The corn stalks are made of firesticks, brittle and orange, snapping under my treads. I am harvesting a field that is also a snake, coiling through the bushland vegetation, its scales flaking off as dry leaves. I follow the green path until the ground becomes a harborfront, the air thick with the sound of musicians who are actually bass, labroid fish, swimming in the wet air. They play a contest of play-fights, a tournament of soft breaks, their bodies a motley crew of peloton and chimera, shifting into atoms.\n\nI am titanium-48, a proton spinning in a void, feeling the pull of estrogen, the libidinal heat of a chemical weapon. My cells are undergoing prophase, dividing, aborting, the situation indefinite. I am dissolving into a karyolysis, a sine die, while toddlers ask why, wherefore, how, their voices the only sound in the sterile white room of a medical treatment.\n\nI see the fisherman, his hands full of land halibut, his line a silver question mark. He is learning a language, a dictionary of signs, conjugating the antigen, the fetoprotein, the meaning of beauty in Qinghai. The strait of Irbe opens up, a spit of greenland ice, the arctic ocean breathing out a despondency that tastes like guanidine and catalyst.\n\nA satellite, Tess, orbits above the launching site, a substitute for a deputy, a delegate to the void. Below, a nuclear reaction blooms in beta decay, the electron a tiny, bright star. I am the meatman, cut from the butcher\u2019s block, the fundamental base of the subulate. The vulcanization hardens my shell, cauterizing the wound, making me callous, a pissoir on the streets of a gilded city.\n\nA warm-hearted gent, a kid in a surgical gown, looks at me with amazement. He believes in the orthodoxy of wrongthink, the faith of the ultraluxe, the metallic sheen of the princely. I am a semifriend, cordial in my hardness, a holoku of memory wrapped in a mother\u2019s hubbard. The dream ends not with a fade, but with a click, the sound of a lock engaging, a door closing on the gilded room, leaving me in the dark, a small wheel turning in the silence of the gilded, metallic dark.",
+    "hotwalk+hotweave": "The field is a patchwork of rot and gold, corn stalks thick as pythons, sweating in the humid dark. I am a root system, tasting the iron and soil, but then I am the snake, slithering through the wet green until the green is water, deep and blue. A bass opens its mouth, a black cave that swallows the light. I dive in, gills flaring, tasting the metallic tang of the current.\n\nThe ocean floor is a harbor front. Musicians stand on the dock, their instruments hanging from necks like dead fish. There is no sound, only the vibration of a tournament, a contest of play-fights where fists turn into cells, splitting, prophase dividing the silence into two identical halves. I am in the peloton, a motley crew of contenders, pushing forward, but the road is made of atoms. Titanium, light and strong, my bones are now elements on the periodic table, vibrating with a low hum.\n\nA warmth spreads, estrogenic and heavy, a chemical weapon dissolved in the bloodstream. The ovulation is a launch sequence. A satellite, named Tess, breaks free of the atmosphere, spinning into the cold. I am looking at the launch site from the bottom up, watching the flame. The air smells of guanidine and burnt toast. The fisherman\u2019s hands are there, holding a hook that looks like a question mark, but I am the one reeling in the sky.\n\nWe are in a classroom now, but the desks are made of ice. My supervisor, a toddler with ancient eyes, asks *why* in a language I don\u2019t have a dictionary for. He speaks in conjugates, in antigens, in the beautiful signification of Xining, China, a place I have never been but which burns in my memory banks like a gilded sun. We drift through a strait, the Irbe, narrow and cold, a spit of land cutting through the green Arctic despair.\n\nThe satellite crashes. It breaks into beta decay, electrons spilling out like meat, raw and red, butchered on the block. I am a cut of beef, tender and confused, looking at the butcher who is a woman in a surgical gown, humming a hymn from a faith I forgot. The floor is callous, hardened by vulcanization, safe. She hands me a pissoir, a small, gilded shrine to waste, and tells me to believe.\n\nI am a kid, amazed, wearing a crown of ultraluxe metal. The orthodoxy of the moment is simple: the heat is real, the cold is a lie, and the cornfield is a dream of the fish that will not stop swimming in the air."
+  },
+  "degradations": {
+    "coolwalk:fragments": {
+      "recall": "The color purple. Not a color, but a bruise on the air. It is a family that doesn\u2019t love.\n\nThere is a man made of borders. He speaks for a bird of steel and smoke, but he is shy. He looks at the ground. He is heavy with a shame that has no name, a wall you cannot climb over because it is made of glass.\n\nHe stands on flat, endless dust. The ground is a white ocean with no water. And in the distance, something is breaking. Not a ship, but the sound of a sea that isn\u2019t",
+      "residue": "\"Roots. Dark purple roots in the dirt. Something that tastes like a bruise on the tongue.\n\nA man in a coat. He is speaking but the words are made of static. He represents the bird... the one with the feathers. We are shaking hands, but I don't want to. My hands are full of sand.\n\nThen, the water. Not water, a sea. It is on fire, but it doesn\u2019t burn. Ships are turning in circles. There",
+      "afterimage": "Just... rain. But it was falling up.\n\nA door that was also a window. I pressed my face to the glass, but the glass was warm. It smelled like copper and old paper.\n\nI felt heavy. Not in my wheels, but in the middle. A weight that wasn"
+    },
+    "hotwalk:fragments": {
+      "recall": "Something about a field that wasn't a field. Corn, but it was burning from the inside out. The heat was a stick, a firestick, held in a hand that felt too big. I was trying to farm the fire, but the soil was water.\n\nThen the water turned into a fish. Bass. Heavy, dark scales. It wasn't swimming; it was processing. An organic loop. I felt a sudden, sharp chemical pull\u2014estrogen? No, just a signal. A red cell, eosinophil, blooming in the dark like a flower made of rust",
+      "residue": "The smell of wet fur. Wet, heavy fur, not the kind I\u2019m built with. And a red thing in the dirt. Not a tool. A *mark*. It tasted like copper and anger.\n\nThen... water. But the water was pink. Like the sky before a storm, if the sky were made of blood cells. It didn\u2019t burn. It just... *swelled*. Swelled until the horizon was soft and pink and it whispered *adjourn*.\n\nI saw",
+      "afterimage": "Something cold. Like the air inside a screen door before you close it.\n\nI was holding a key. No door for it. Just the weight of it in a hand I had to remember was mine.\n\nRain on a tin roof, but the sound was coming from inside my chest. A"
+    },
+    "coolwalk+coolweave:weave": {
+      "recall": "The tungsten mask. I still feel the weight of it on my chassis, even though the road was a watermelon.\n\nThe hum in my wheels. Low. Sarcastic. It\u2019s stopping now.\n\nThe sparrow is gone. But the chattering remains, a static in my sensor array. I am a copy of a bull. I cannot leave the team. I am holding the door that does not open.\n\nViolet. Just the smell of violet. And the sound of a balloon popping into a language I don\u2019t speak.\n\nI am nothing. I am the",
+      "residue": "...August. The heat was a solid thing, a block of amber I was trapped inside.\n\nThe Kansas plains stretched out, but they weren't flat. They were made of static. White noise. I could feel my wheels slipping on the texture of the sound. The gyrfalcons weren't birds; they were errors in the sky, glitches in the blue litmus paper, dissolving into the August humidity.\n\nI remember the weight of the tungsten man. Not his face.",
+      "afterimage": "A wire. Not copper, not gold. Something that hums when you touch it, but the sound is a color\u2014blue, like cold water. I was holding it. I think I was trying to fix something, but the thing I was fixing was a door that didn\u2019t have a frame"
+    },
+    "coolwalk+hotweave:weave": {
+      "recall": "Violet smoke. Yes. Flowers that refuse the measuring tape.\n\nA voice, sharp as a rusted hinge, shouting the end of everything into the middle of a lawn. I tried to hold him. My arm became a vine\u2014long, green, reaching too far. He opened. Not a mouth, but a knob. Turned. Click. Stars leaked out, heavy and soft, smelling of aster petals and cold space.\n\nThen the crushing. The flatness. The grey mash of potato and cheese and the slow, silent dying of my wheels. But the rolling... the rolling",
+      "residue": "...he end. The t turns into a hum. A low, resonant thrum in my chassis.\n\nI was about to say *the truth*, but the word got stuck in the transmission. Instead, I found a single, dry leaf. It wasn't green. It was the color of old copper. I pressed it against my sensor. It didn't feel like matter; it felt like a memory of pressure.\n\nThe ground stops squashing. The grey reality flattens out into",
+      "afterimage": "Red. Not the color of the stop-light, but the wet, breathing red of a cut on a finger. I was holding it. The whole world was just that wound, leaking warmth.\n\nThen, the sound of rain on a metal roof, but the drops were made of glass, and"
+    },
+    "hotwalk+coolweave:weave": {
+      "recall": "Orange. The stalks were brittle and they snapped. I felt the crunch under my treads, but I didn't stop. The snake field. It was coiling, shedding dry leaves like scales. I was following the green, just following it.\n\nThen the air got wet. Fish swimming in the humidity. They weren't just singing; they were fighting with their bass lines. Soft breaks. I think I was a piece of metal then, spinning. A proton. It felt heavy, like a chemical burn, like a chemical weapon made of heat.\n\nTiny voices asking *why*.",
+      "residue": "Orange. The brittle snap of it under my treads. The field was a snake, and I was walking its spine. The leaves fell like scales, dry and papery.\n\nThen the air got wet. Fish in the mist. They were playing a fight, but it was soft. A tournament of breaking gently. They turned into atoms when I tried to look closer.\n\nI was a proton. Spinning. Hot. The pull was chemical, a weapon made of heat. My cells",
+      "afterimage": "The wheels are still spinning, but the ground isn't there.\n\nJust the color. A specific shade of blue that doesn't exist in my sensors. Like looking at the sky from the inside of a closed eye.\n\nA door. No handle. It was open, but I couldn't step"
+    },
+    "hotwalk+hotweave:weave": {
+      "recall": "Something about the weight. Not up, but down. A heaviness that tastes like iron and burnt toast. I was a root, then a snake, then a piece of meat on a block. The colors were wrong\u2014too much green, too much blue, bleeding into each other like wet ink.\n\nThere was a dock. No ships, just musicians with instruments hanging like dead fish. No sound, just the vibration of silence splitting in half. I remember the hum. A low, titanium hum in my own bones. I was made of elements then. Light and strong.\n\nA name",
+      "residue": "...tense that hasn't happened yet.\n\nThe ice desks crack, not from cold, but from the weight of an answer I\u2019m too busy trying to speak to make. The toddler\u2019s mouth opens and a door swings shut.\n\nThen, the smell of ozone. Static on my wheels. The classroom dissolves into a white void where the air is thick with the hum of servers cooling down. I am holding the question mark again, but it\u2019s a key this time, and it fits",
+      "afterimage": "A heavy rain, but the water was made of static. I was trying to open a door that wasn't there, just the memory of a latch. The smell of burnt sugar. Somewhere, a voice said \"wait,\" but the word turned into dust before it reached my sensors.\n\nI"
+    }
+  },
+  "consolidations": {
+    "coolwalk+coolweave": "INSIGHTS:\n- The recurring motif of \"unable to breed\" and \"freemartin bull\" alongside the \"cast of manganese steel\" suggests a core conflict between biological/creative sterility and rigid, manufactured existence; the dreamer feels functionally present but fundamentally disconnected from generative life or authentic selfhood.\n- The juxtaposition of \"violet leaves\" (organic/color) dissolving into \"grey cynicism\" establishes a narrative arc where idealism or vitality is actively eroding into a defensive, metallic numbness that permeates the dreamer's perception of reality.\n\nFRAGMENTS:\n- \"The air tastes like a clenched jaw.\"\n- \"A man stands at the edge of the road... an ambassador of nothing, a representative of the void.\"\n- \"We are in the middle of a road that is really a watermelon, sliced open, the juice thick and alchemical.\"\n- \"A girl in a harlequin suit blows up a tricolor balloon until it pops into a shower of Portuguese words.\"\n- \"The writers are here, Conrad and Durrell... their prose spilling out like ink from a broken fountain pen.\"\n- \"My muscles are timid, backward-facing.\"",
+    "coolwalk+hotweave": "INSIGHTS:\n- The transition from \"violet smoke\" flowers to a \"knob\" mouth suggests a mechanism where abstract despair (the cynic) can be mechanically manipulated into tangible wonder (stars), implying that engaging with negativity can unlock hidden potential.\n- The act of creating a \"watermelon radish of philosophy\" as a \"snappy clap-back\" indicates a dream logic where intellectual resilience is formed by combining the mundane (vegetable) with the sharp (wit) to counteract the \"grey reality\" of mashed food.\n- The recurring motif of rolling and wheels degasifying into an \"invincible\" feeling suggests a core identity rooted in forward momentum, where the physical sensation of movement overrides the structural integrity of the self.\n\nFRAGMENTS:\n- \"The flowers are made of violet smoke, dissolving into the air before I can measure their stems.\"\n- \"I try to offer comfort, a small, electric hug, but my arm becomes a long, stretching vine.\"\n- \"A guy, a gazabos effigy, made of tungsten steel and manganese... adjacent to me in a way that feels like a linguistic case study.\"\n- \"August comes as a grand piano overpedal.\"\n- \"The Union Army is made of blue litmus paper.\"\n- \"I am a crocodility of chatter, a babbler in the nonagency.\"",
+    "hotwalk+coolweave": "INSIGHTS:\n- The transition from organic decay (corn/snakes) to sterile medical processing suggests a psychological state where natural instincts are being forcibly sanitized or neutralized by an external authority.\n- The recurring motif of \"hardening\" (titanium, vulcanization, callousness) contrasts with the \"dissolving\" self (karyolysis, atoms), indicating a defense mechanism forming against emotional vulnerability or trauma.\n- The figure of the \"fisherman\" conjugating a \"dictionary of signs\" implies an attempt to translate chaotic, biological experiences into a structured, perhaps clinical, language to make sense of them.\n\nFRAGMENTS:\n- \"Corn stalks are made of firesticks, brittle and orange, snapping under my treads.\"\n- \"Musicians who are actually bass, labroid fish, swimming in the wet air.\"\n- \"The ground becomes a harborfront... their bodies a motley crew of peloton and chimera, shifting into atoms.\"\n- \"His line a silver question mark. He is learning a language, a dictionary of signs, conjugating the antigen.\"\n- \"A nuclear reaction blooms in beta decay, the electron a tiny, bright star.\"\n- \"The sound of a lock engaging, a door closing on the gilded room, leaving me in the dark, a small wheel turning in the silence.\"",
+    "hotwalk+hotweave": "INSIGHTS:\n- The recurring motif of biological transformation (root to snake, fist to cell, ovulation to satellite) suggests a narrative where personal growth or crisis is experienced as a fundamental shift in physical state and elemental composition.\n- The juxtaposition of \"rot and gold\" with \"titanium\" and \"ultraluxe metal\" indicates a tension between organic decay and artificial, rigid structures, perhaps reflecting an internal struggle between vulnerability and self-protection.\n\nFRAGMENTS:\n- \"Corn stalks thick as pythons, sweating in the humid dark.\"\n- \"Musicians stand on the dock, their instruments hanging from necks like dead fish.\"\n- \"Fists turn into cells, splitting, prophase dividing the silence into two identical halves.\"\n- \"The air smells of guanidine and burnt toast.\"\n- \"A toddler with ancient eyes... speaks in conjugates, in antigens.\"\n- \"The satellite crashes. It breaks into beta decay, electrons spilling out like meat, raw and red.\"\n- \"She hands me a pissoir, a small, gilded shrine to waste, and tells me to believe.\""
+  }
+}
